@@ -1,0 +1,17 @@
+version: '3.7'
+services:
+  keycloak:
+    image: alvearie/smart-keycloak
+    ports: 
+      - "8080:8080"
+      - "8443:8443"
+    command:
+      - --start-mode=normal
+    healthcheck:
+      test: "curl -sSL http://localhost:8080/auth"
+    volumes:
+      - ./config/realm.json:/tmp/realm.json
+    environment: 
+      - "KEYCLOAK_USER=admin"
+      - "KEYCLOAK_PASSWORD=admin"
+      - "KEYCLOAK_IMPORT=/tmp/realm.json"

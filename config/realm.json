@@ -1,0 +1,47 @@
+{
+    "realm": "phsa",
+    "enabled": true,
+    "users": [
+        {
+            "username": "brad",
+            "enabled": true,
+            "credentials": [
+                {
+                    "type": "password",
+                    "value": "brad"
+                }
+            ],
+            "realmRoles": [
+                "admin"
+            ]
+        }
+    ],
+    "roles": {
+        "realm": [
+            {
+                "name": "user",
+                "description": "User privileges"
+            },
+            {
+                "name": "admin",
+                "description": "Administrator privileges"
+            }
+        ]
+    },
+    "defaultRoles": [
+        "user"
+    ],
+    "clients": [
+        {
+            "clientId": "terraform",
+            "enabled": true,
+            "publicClient": false,
+            "redirectUris": [
+                "*"
+            ],
+            "webOrigins": [
+                "*"
+            ]
+        }
+    ]
+}
