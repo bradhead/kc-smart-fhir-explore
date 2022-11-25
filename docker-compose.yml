@@ -1,6 +1,8 @@
 version: '3.7'
 services:
   keycloak:
+    build: https://github.com/Alvearie/keycloak-extensions-for-fhir
+    command: -t alvearie/smart-keycloak
     image: alvearie/smart-keycloak
     ports: 
       - "8080:8080"
