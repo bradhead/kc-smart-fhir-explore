@@ -8,10 +8,7 @@ The following steps need to be run by a realm administrator in the Keycloak real
 
 Authenticate with the Keycloak
 Navigate to Clients
-Click Create
-Click Import
-    Select terraform.json file
-Click Save
+Select 'terraform' Client
 Select Service Account Roles tab
     Add realm-admin role
 Select Credentials tab
@@ -19,7 +16,7 @@ Select Credentials tab
 
 ## Terraform configuration
 
-Please quest the Terraform configuration files from a Health Gateway team member and place in the Terraform directory.
+Request the Terraform configuration files from team member and place in the Terraform directory.
 
 ## Run
 
