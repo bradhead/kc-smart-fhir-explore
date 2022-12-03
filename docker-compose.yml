@@ -1,6 +1,7 @@
 version: '3.7'
 services:
   keycloak:
+    container_name: keycloak-smart-fhir
     image: kc-smart-fhir-poc
     build:
       context: https://github.com/Alvearie/keycloak-extensions-for-fhir.git#main
@@ -14,8 +15,25 @@ services:
     healthcheck:
       test: "curl -sSL http://localhost:8080/auth"
     volumes:
-      - ./config/realm.json:/tmp/realm.json
-    environment: 
+      - ./kc_config/realm.json:/tmp/realm.json
+    environment:
       - "KEYCLOAK_USER=admin"
       - "KEYCLOAK_PASSWORD=admin"
-      - "KEYCLOAK_IMPORT=/tmp/realm.json" 
+      - "KEYCLOAK_IMPORT=/tmp/realm.json"
+  swiss-fhir-client:
+    container_name: swiss-app
+    depends_on:
+      - keycloak
+    image: omarhoblos/swiss-on-fhir
+    ports:
+      - "4200:80"
+    environment:
+        - "FHIRENDPOINT_URI=http://localhost:9001/fhir-rs"
+        - "REDIRECT_URI=http://localhost:4200/index.html"
+        - "ISSUER_URI=http://localhost:8080/auth/realms/phsa"
+        - "LOGOUT_URI='http://localhost:8080/auth/realms/phsa/protocol/openid-connect/logout?cb=none&revoke=token&revoke=token_refresh'"
+        - "CLIENT_ID=swiss"
+        - "SCOPES='fhirUser offline_access launch/patient openid patient/*.read patient/*.write'"
+        - "ENABLE_HTTPS=false"
+        - "SKIP_ISSUER_CHECK=false"
+        - "STRICT_DISCOVERY_DOCUMENT_VALIDATION=true"

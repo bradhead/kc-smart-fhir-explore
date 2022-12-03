@@ -6,69 +6,24 @@ In order to configure Keycloak, you will need to have installed [Terraform](http
 
 The following steps need to be run by a realm administrator in the Keycloak realm prior to using Terraform:
 
-Authenticate with the Keycloak
-Navigate to Clients
-Select 'terraform' Client
-Select Service Account Roles tab
-    Add realm-admin role
-Select Credentials tab
-    Copy secret value
+1. Authenticate with the Keycloak as admin
+2. Navigate to Clients
+3. Select 'terraform' Client 
+4. Select Service Account Roles tab
+5. Choose 'Realm-Management' from Client Roles options.
+6. From the Available Roles, select "realm-admin"
+7. Click on  "Add selected" button to assign this role
 
-## Terraform configuration
+Next, you will need to client secret for this client for Terraform configuration.
 
-Request the Terraform configuration files from team member and place in the Terraform directory.
+8. Select 'Credentials' tab for Client 'terraform'
+9. Click on 'Regenerate Secret' button and finally,
+10. Copy the secret to the pasteboard for use in Terraform config.
+
 
 ## Run
 
 ```console
-terraform login
 terraform init
-terraform workspace select [Keycloak-???] where ??? is dev, test or prod
 terraform apply -var-file ???.tfvars
-```
-
-## Populating Users
-
-Users are not maintained in Terraform as Terraform constantly sees these resources as having been updated and resets them.  Instead a custom script (ProcessUsers.ps1) should be used to add or remove users from KeyCloak.
-
-To load Health Gateway Administrator Users in Development perform the following
-
-```console
-pwsh ./ProcessUsers.ps1 -SecretsFile dev.secrets.json -UsersFile users/admin_users.json
-```
-
-To remove the same users run
-
-```console
-pwsh ./ProcessUsers.ps1 -SecretsFile dev.secrets.json -UsersFile users/admin_users.json -Remove
-```
-
-In the development Keycloak environments additional users should be created for functional tests and load testing.  
-
-Please note, you need to provide a default password.
-
-```console
-pwsh ./ProcessUsers.ps1 -SecretsFile dev.secrets.json -UsersFile dev_users.json -Password [PASSWORD]
-pwsh ./ProcessUsers.ps1 -SecretsFile dev.secrets.json -UsersFile k6_users.json -Password [PASSWORD]
-```
-
-and to remove these users
-
-```console
-pwsh ./ProcessUsers.ps1 -SecretsFile dev.secrets.json -UsersFile dev_users.json -Remove
-pwsh ./ProcessUsers.ps1 -SecretsFile dev.secrets.json -UsersFile k6_users.json -Remove
-```
-
-## Loading Existing Silver Users
-
-Extract existing SupportUser users from Silver Keycloak with 
-
-```console
-pwsh ./ExtractUsers.ps1 -SecretsFile prodsilver.secrets.json -Role SupportUser > users/prodSupportUsers.json
-```
-
-and then load into Gold Keycloak with
-
-```console
-pwsh ./ProcessUsers.ps1 -SecretsFile prod.secrets.json -UsersFile users/prodSupportUsers.json
 ```
