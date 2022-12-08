@@ -51,11 +51,25 @@ property = new ProviderConfigProperty();
     }
 @Override
     public String getHelpText() {
-        return "some help text";
+        return "Example PLR Sourced custom claims";
     }
+/*
+ * This is where the custom claims would be retrieved from an external DB or API based on existing claims found in the access token
+ * such as the unique pracitioner ID, such as the Pharmanet GPID, or other external college (regulatory body) ids for the practitioner.
+ * This example shows hard-coded extra custom claims.
+ * 
+ * This assumes we would derive these additional claims in-flight during an authorization event. The only practical solution would be checking
+ * member in good standing or status of the practitioner in the PLR so was to perform this check real-time.  Whether enforceable at 
+ * the Resource Server 
+ * 
+ */
 public AccessToken transformAccessToken(AccessToken token, ProtocolMapperModel mappingModel, KeycloakSession keycloakSession,
                                             UserSessionModel userSession, ClientSessionContext clientSessionCtx) {
-token.getOtherClaims().put("custom_claim_name", "custom_claim_value");
+
+
+token.getOtherClaims().put("plr_identifiers", "[ 'CAMD-9999-9999', 'MSP-99999' ]");
+setClaim(token, mappingModel, userSession, keycloakSession, clientSessionCtx);
+token.getOtherClaims().put("plr_provider_status", "active");
 setClaim(token, mappingModel, userSession, keycloakSession, clientSessionCtx);
         return token;
     }

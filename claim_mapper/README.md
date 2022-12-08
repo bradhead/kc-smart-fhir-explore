@@ -6,8 +6,13 @@ For example, this could call out to a provider registry or other authoritative s
 
 The Resource Server would then inspect the bearer token and have a policy enforcement coded that says that if the license status is not what we expect then the transaction would be denied -- i.e. a 401 Unauthorized would be returned by the API. 
 
-## build
+## Build
 
-`code mvn clean package
-## deploy
+`mvn clean package`
+
+## Deploy
+
+## Reference
+
+https://medium.com/@pavithbuddhima/how-to-add-custom-claims-to-jwt-tokens-from-an-external-source-in-keycloak-52bd1ff596d3
 
