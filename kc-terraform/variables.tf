@@ -1,8 +1,7 @@
-variable "environment" {
+variable "keycloak_environment" {
   type = object({
-    name = string
-    realm = string
-    base_url = string
+    realm = optional(string, "smart")
+    base_url = optional(string, "http://localhost:8080")
   })
   description = "Keycloak configuration environment"
 }
@@ -18,7 +17,7 @@ variable "keycloak_terraform_client" {
 
 variable "client_smart_app" {
   type = object({
-    id              = optional(string, "swissapp")
+    id              = optional(string, "swiss-app")
     valid_redirects = list(string)
     web_origins     = list(string)
   })

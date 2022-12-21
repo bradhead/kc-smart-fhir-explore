@@ -10,6 +10,6 @@ terraform {
 provider "keycloak" {
   client_id     = var.keycloak_terraform_client.id
   client_secret = var.keycloak_terraform_client.secret
-  url           = var.environment.base_url
-  realm         = var.environment.realm
+  url           = var.keycloak_environment.base_url
+  realm         = var.keycloak_environment.realm
 }

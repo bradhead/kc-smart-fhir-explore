@@ -47,7 +47,7 @@ resource "keycloak_openid_client_scope" "medication_dispense_read_scope" {
 }
 
 resource "keycloak_openid_client_scope" "medication_dispense_user_read_scope" {
-  realm_id               = data.keycloak_realm.realm.id
+  realm_id               = data.keycloak_realm.smart_realm.id
   name                   = "user/MedicationDispense.read"
   description            = "Provides user access to Medication Dispense data"
   include_in_token_scope = true

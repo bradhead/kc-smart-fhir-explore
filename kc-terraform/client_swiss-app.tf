@@ -7,8 +7,8 @@ resource "keycloak_openid_client" "smart-client" {
   access_type                  = "PUBLIC"
   standard_flow_enabled        = true
   direct_access_grants_enabled = true
-  valid_redirect_uris          = "http://localhost:4200/*"
-  web_origins                  = "http://localhost:4200"
+  valid_redirect_uris          = var.client_smart_app.valid_redirects
+  web_origins                  = var.client_smart_app.web_origins
   full_scope_allowed           = false
 }
 
@@ -20,10 +20,7 @@ resource "keycloak_openid_client_default_scopes" "client_default_scopes" {
     "openid",
     "profile",
     "web-origins",
-    keycloak_openid_client_scope.audience_scope.name,
-    keycloak_openid_client_scope.immunization_read_scope.name,
     keycloak_openid_client_scope.laboratory_read_scope.name,
-    keycloak_openid_client_scope.notification_read_scope.name,
     keycloak_openid_client_scope.patient_read_scope.name
   ]
 }
