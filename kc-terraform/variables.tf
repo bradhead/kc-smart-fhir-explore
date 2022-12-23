@@ -1,6 +1,7 @@
 variable "keycloak_environment" {
   type = object({
     realm = optional(string, "smart")
+    custom_audience = optional(string, "fhir-rs")
     base_url = optional(string, "http://localhost:8080")
   })
   description = "Keycloak configuration environment"
@@ -26,14 +27,15 @@ variable "client_smart_app" {
 
 variable "keycloak_idp_azure_ad" {
   type = object({
+    alias         = string
     base_url      = string
-    auth_path     = optional(string, "/login/oidc/authorize/")
-    token_path    = optional(string, "/oauth2/token")
+    auth_path     = optional(string, "/oauth2/v2.0/authorize/")
+    token_path    = optional(string, "/oauth2/v2.0/token")
     userinfo_path = optional(string, "/oauth2/userinfo")
     client_id     = string
     client_secret = string
-    issuer_path   = optional(string, "/oauth2/")
-    jwks_path     = optional(string, "/oauth2/jwk.json")
+    issuer_path   = optional(string, "/v2.0")
+    jwks_path     = optional(string, "/discovery/v2.0/keys/")
   })
   sensitive   = true
   description = "The configuration settings for the Azure AD Identity Provider"

@@ -1,7 +1,7 @@
 resource "keycloak_oidc_identity_provider" "azure_ad" {
   realm                 = data.keycloak_realm.smart_realm.id
-  alias                 = "zedwerks_idp"
-  display_name          = "ZedWerks Azure Actie Directory"
+  alias                 = var.keycloak_idp_azure_ad.alias
+  display_name          = "ZedWerks Azure Active Directory"
   enabled               = true
   store_token           = false
   trust_email           = true
@@ -18,17 +18,5 @@ resource "keycloak_oidc_identity_provider" "azure_ad" {
   extra_config = {
     "clientAuthMethod" = "client_secret_post"
     "prompt"           = "login"
-  }
-}
-
-resource "keycloak_hardcoded_attribute_identity_provider_mapper" "azure_ad_idp" {
-  realm                   = data.keycloak_realm.smart_realm.id
-  name                    = "idp"
-  identity_provider_alias = "azure-ad"
-  attribute_name          = "idp"
-  attribute_value         = "azure_ad"
-  user_session            = false
-  extra_config = {
-    syncMode = "INHERIT"
   }
 }

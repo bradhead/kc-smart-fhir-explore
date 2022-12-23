@@ -14,7 +14,7 @@ resource "keycloak_openid_client" "smart-client" {
 
 resource "keycloak_openid_client_default_scopes" "client_default_scopes" {
   realm_id  = keycloak_openid_client.smart-client.realm_id
-  client_id = keycloak_openid_client.smart-client.client_id
+  client_id = keycloak_openid_client.smart-client.id
 
   default_scopes = [
     "openid",
@@ -26,7 +26,7 @@ resource "keycloak_openid_client_default_scopes" "client_default_scopes" {
 }
 resource "keycloak_openid_client_optional_scopes" "client_optional_scopes" {
   realm_id  = keycloak_openid_client.smart-client.realm_id
-  client_id = keycloak_openid_client.smart-client.client_id
+  client_id = keycloak_openid_client.smart-client.id
 
   optional_scopes = [
     "address",
@@ -41,7 +41,7 @@ resource "keycloak_openid_client_optional_scopes" "client_optional_scopes" {
 
 resource "keycloak_openid_user_attribute_protocol_mapper" "pdid" {
   realm_id  = keycloak_openid_client.smart-client.realm_id
-  client_id = keycloak_openid_client.smart-client.client_id
+  client_id = keycloak_openid_client.smart-client.id
   name                = "pdid"
   user_attribute      = "pdid"
   claim_name          = "pdid"
