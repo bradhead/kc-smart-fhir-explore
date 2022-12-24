@@ -35,7 +35,6 @@ resource "keycloak_openid_client_optional_scopes" "client_optional_scopes" {
     "microprofile-jwt",
     keycloak_openid_client_scope.patient_encounter_read_scope.name,
     keycloak_openid_client_scope.patient_medication_dispense_read_scope.name,
-    keycloak_openid_client_scope.patient_observation_read_scope.name,
   ]
 }
 
