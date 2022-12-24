@@ -20,8 +20,8 @@ resource "keycloak_openid_client_default_scopes" "client_default_scopes" {
     "openid",
     "profile",
     "web-origins",
-    keycloak_openid_client_scope.laboratory_read_scope.name,
-    keycloak_openid_client_scope.patient_read_scope.name
+    keycloak_openid_client_scope.patient_observation_read_scope.name,
+    keycloak_openid_client_scope.patient_patient_read_scope.name
   ]
 }
 resource "keycloak_openid_client_optional_scopes" "client_optional_scopes" {
@@ -33,9 +33,9 @@ resource "keycloak_openid_client_optional_scopes" "client_optional_scopes" {
     "email",
     "phone",
     "microprofile-jwt",
-    keycloak_openid_client_scope.encounter_read_scope.name,
-    keycloak_openid_client_scope.medication_dispense_read_scope.name,
-    keycloak_openid_client_scope.observation_read_scope.name,
+    keycloak_openid_client_scope.patient_encounter_read_scope.name,
+    keycloak_openid_client_scope.patient_medication_dispense_read_scope.name,
+    keycloak_openid_client_scope.patient_observation_read_scope.name,
   ]
 }
 
