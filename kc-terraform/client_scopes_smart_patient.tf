@@ -2,7 +2,7 @@ resource "keycloak_openid_client_scope" "fhir_user_scope" {
   realm_id               = data.keycloak_realm.smart_realm.id
   name                   = "fhirUser"
   description            = "Permission to retrieve current logged-in user"
-  consent_consent_screen_text = "Permission to retrieve current logged-in user"
+  consent_screen_text = "Permission to retrieve current logged-in user"
   include_in_token_scope = true
 }
 
@@ -139,7 +139,7 @@ resource "keycloak_openid_client_scope" "patient_location_read_scope" {
   include_in_token_scope = true
 }
 
-resource "keycloak_openid_client_scope" "patient_location_read_scope" {
+resource "keycloak_openid_client_scope" "patient_location_write_scope" {
   realm_id               = data.keycloak_realm.smart_realm.id
   name                   = "patient/Location.write"
   description            = "Write access to Locations"
@@ -219,11 +219,11 @@ resource "keycloak_openid_client_scope" "patient_procedure_read_scope" {
   include_in_token_scope = true
 }
 
-resource "keycloak_openid_client_scope" "patient_provenance_read_scope" {
+resource "keycloak_openid_client_scope" "patient_provenance_write_scope" {
   realm_id               = data.keycloak_realm.smart_realm.id
-  name                   = "patient/Provenance.read"
-  description            = "Read access to Provenance"
-  consent_screen_text =  "Read access to Provenance for the patient"
+  name                   = "patient/Provenance.write"
+  description            = "Write access to Provenance"
+  consent_screen_text =  "Write access to Provenance for the patient"
   include_in_token_scope = true
 }
 
@@ -234,15 +234,6 @@ resource "keycloak_openid_client_scope" "patient_related_persons_read_scope" {
   consent_screen_text =  "Read access to Related Persons for the patient"
   include_in_token_scope = true
 }
-
-resource "keycloak_openid_client_scope" "patient_related_persons_read_scope" {
-  realm_id               = data.keycloak_realm.smart_realm.id
-  name                   = "patient/RelatedPerson.read"
-  description            = "Read access to Related Persons"
-  consent_screen_text =  "Read access to Related Persons for the patient"
-  include_in_token_scope = true
-}
-
 resource "keycloak_openid_client_scope" "patient_related_persons_write_scope" {
   realm_id               = data.keycloak_realm.smart_realm.id
   name                   = "patient/RelatedPerson.write"
