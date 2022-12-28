@@ -58,8 +58,24 @@ resource "keycloak_openid_client_scope" "patient_care_plan_read_scope" {
 }
 
 resource "keycloak_openid_audience_protocol_mapper" "patient_care_plan_read_audience_mapper" {
-  realm_id        = keycloak_openid_client_scope.patient_care_plan_read_scope.realm_id
-  client_scope_id = keycloak_openid_client_scope.patient_care_plan_read_scope.id
+  realm_id                 = keycloak_openid_client_scope.patient_care_plan_read_scope.realm_id
+  client_scope_id          = keycloak_openid_client_scope.patient_care_plan_read_scope.id
+  name                     = "audience-mapper"
+  add_to_id_token          = false
+  included_custom_audience = var.keycloak_environment.custom_audience
+}
+
+resource "keycloak_openid_client_scope" "patient_careteam_read_scope" {
+  realm_id               = data.keycloak_realm.smart_realm.id
+  name                   = "patient/CareTeam.read"
+  description            = "Read access to CareTeam"
+  consent_screen_text    = "Permission to read CareTeam resources for the patient"
+  include_in_token_scope = true
+}
+
+resource "keycloak_openid_audience_protocol_mapper" "patient_careteam_read_audience_mapper" {
+  realm_id        = keycloak_openid_client_scope.patient_careteam_read_scope.realm_id
+  client_scope_id = keycloak_openid_client_scope.patient_careteam_read_scope.id
   name            = "audience-mapper"
   add_to_id_token = false
 
@@ -345,10 +361,10 @@ resource "keycloak_openid_client_scope" "patient_organization_read_scope" {
 }
 
 resource "keycloak_openid_audience_protocol_mapper" "patient_organization_read_audience_mapper" {
-  realm_id        = keycloak_openid_client_scope.patient_organization_read_scope.realm_id
-  client_scope_id = keycloak_openid_client_scope.patient_organization_read_scope.id
-  name            = "audience-mapper"
-  add_to_id_token = false
+  realm_id                 = keycloak_openid_client_scope.patient_organization_read_scope.realm_id
+  client_scope_id          = keycloak_openid_client_scope.patient_organization_read_scope.id
+  name                     = "audience-mapper"
+  add_to_id_token          = false
   included_custom_audience = var.keycloak_environment.custom_audience
 }
 
@@ -361,10 +377,10 @@ resource "keycloak_openid_client_scope" "patient_patient_read_scope" {
 }
 
 resource "keycloak_openid_audience_protocol_mapper" "patient_patient_read_audience_mapper" {
-  realm_id        = keycloak_openid_client_scope.patient_patient_read_scope.realm_id
-  client_scope_id = keycloak_openid_client_scope.patient_patient_read_scope.id
-  name            = "audience-mapper"
-  add_to_id_token = false
+  realm_id                 = keycloak_openid_client_scope.patient_patient_read_scope.realm_id
+  client_scope_id          = keycloak_openid_client_scope.patient_patient_read_scope.id
+  name                     = "audience-mapper"
+  add_to_id_token          = false
   included_custom_audience = var.keycloak_environment.custom_audience
 }
 
@@ -393,26 +409,26 @@ resource "keycloak_openid_client_scope" "patient_practitioner_role_read_scope" {
   include_in_token_scope = true
 }
 resource "keycloak_openid_audience_protocol_mapper" "patient_practitioner_role_read_audience_mapper" {
-  realm_id        = keycloak_openid_client_scope.patient_practitioner_role_read_scope.realm_id
-  client_scope_id = keycloak_openid_client_scope.patient_practitioner_role_read_scope.id
-  name            = "audience-mapper"
-  add_to_id_token = false
+  realm_id                 = keycloak_openid_client_scope.patient_practitioner_role_read_scope.realm_id
+  client_scope_id          = keycloak_openid_client_scope.patient_practitioner_role_read_scope.id
+  name                     = "audience-mapper"
+  add_to_id_token          = false
   included_custom_audience = var.keycloak_environment.custom_audience
 }
 
 resource "keycloak_openid_client_scope" "patient_procedure_read_scope" {
-  realm_id            = data.keycloak_realm.smart_realm.id
-  name                = "patient/Procedure.read"
-  description         = "Read access to Procedures"
-  consent_screen_text = "Read access to Procedures for the patient"
+  realm_id               = data.keycloak_realm.smart_realm.id
+  name                   = "patient/Procedure.read"
+  description            = "Read access to Procedures"
+  consent_screen_text    = "Read access to Procedures for the patient"
   include_in_token_scope = true
 }
 
 resource "keycloak_openid_audience_protocol_mapper" "patient_procedure_read_audience_mapper" {
-  realm_id        = keycloak_openid_client_scope.patient_procedure_read_scope.realm_id
-  client_scope_id = keycloak_openid_client_scope.patient_procedure_read_scope.id
-  name            = "audience-mapper"
-  add_to_id_token = false
+  realm_id                 = keycloak_openid_client_scope.patient_procedure_read_scope.realm_id
+  client_scope_id          = keycloak_openid_client_scope.patient_procedure_read_scope.id
+  name                     = "audience-mapper"
+  add_to_id_token          = false
   included_custom_audience = var.keycloak_environment.custom_audience
 }
 
@@ -425,10 +441,10 @@ resource "keycloak_openid_client_scope" "patient_provenance_write_scope" {
 }
 
 resource "keycloak_openid_audience_protocol_mapper" "patient_provenance_write_audience_mapper" {
-  realm_id        = keycloak_openid_client_scope.patient_provenance_write_scope.realm_id
-  client_scope_id = keycloak_openid_client_scope.patient_provenance_write_scope.id
-  name            = "audience-mapper"
-  add_to_id_token = false
+  realm_id                 = keycloak_openid_client_scope.patient_provenance_write_scope.realm_id
+  client_scope_id          = keycloak_openid_client_scope.patient_provenance_write_scope.id
+  name                     = "audience-mapper"
+  add_to_id_token          = false
   included_custom_audience = var.keycloak_environment.custom_audience
 }
 

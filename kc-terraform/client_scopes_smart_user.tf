@@ -480,23 +480,428 @@ resource "keycloak_openid_audience_protocol_mapper" "user_basic_full_audience_ma
 }
 // -------------------------------------------------------------------------------
 
-resource "keycloak_openid_client_scope" "user_care_plan_read_scope" {
+resource "keycloak_openid_client_scope" "user_binary_read_scope" {
   realm_id               = data.keycloak_realm.smart_realm.id
-  name                   = "user/CarePlan.read"
-  description            = "Read access to CarePlan"
-  consent_screen_text    = "Read access to Care Plans for the current user"
+  name                   = "user/Binary.read"
+  description            = "Read access to Binary"
+  consent_screen_text    = "Permission to read Binary resources that the current user can access"
   include_in_token_scope = true
 }
 
-resource "keycloak_openid_audience_protocol_mapper" "user_care_plan_read_audience_mapper" {
-  realm_id        = keycloak_openid_client_scope.user_care_plan_read_scope.realm_id
-  client_scope_id = keycloak_openid_client_scope.user_care_plan_read_scope.id
+resource "keycloak_openid_audience_protocol_mapper" "user_binary_read_audience_mapper" {
+  realm_id        = keycloak_openid_client_scope.user_binary_read_scope.realm_id
+  client_scope_id = keycloak_openid_client_scope.user_binary_read_scope.id
   name            = "audience-mapper"
   add_to_id_token = false
 
   included_custom_audience = var.keycloak_environment.custom_audience
 }
+resource "keycloak_openid_client_scope" "user_binary_write_scope" {
+  realm_id               = data.keycloak_realm.smart_realm.id
+  name                   = "user/Binary.write"
+  description            = "Write access to Binary"
+  consent_screen_text    = "Permission to write Binary resources that the current user can access"
+  include_in_token_scope = true
+}
 
+resource "keycloak_openid_audience_protocol_mapper" "user_binary_write_audience_mapper" {
+  realm_id                 = keycloak_openid_client_scope.user_binary_write_scope.realm_id
+  client_scope_id          = keycloak_openid_client_scope.user_binary_write_scope.id
+  name                     = "audience-mapper"
+  add_to_id_token          = false
+  included_custom_audience = var.keycloak_environment.custom_audience
+}
+resource "keycloak_openid_client_scope" "user_binary_full_scope" {
+  realm_id               = data.keycloak_realm.smart_realm.id
+  name                   = "user/Binary.*"
+  description            = "Read and Write access to Binary"
+  consent_screen_text    = "Permission to read and write Binary resources that the current user can access"
+  include_in_token_scope = true
+}
+
+resource "keycloak_openid_audience_protocol_mapper" "user_binary_full_audience_mapper" {
+  realm_id                 = keycloak_openid_client_scope.user_binary_full_scope.realm_id
+  client_scope_id          = keycloak_openid_client_scope.user_binary_full_scope.id
+  name                     = "audience-mapper"
+  add_to_id_token          = false
+  included_custom_audience = var.keycloak_environment.custom_audience
+}
+// -------------------------------------------------------------------------------
+resource "keycloak_openid_client_scope" "user_biological_read_scope" {
+  realm_id               = data.keycloak_realm.smart_realm.id
+  name                   = "user/BiologicallyDerivedProduct.read"
+  description            = "Read access to BiologicallyDerivedProduct"
+  consent_screen_text    = "Permission to read BiologicallyDerivedProduct resources that the current user can access"
+  include_in_token_scope = true
+}
+
+resource "keycloak_openid_audience_protocol_mapper" "user_biological_read_audience_mapper" {
+  realm_id                 = keycloak_openid_client_scope.user_biological_read_scope.realm_id
+  client_scope_id          = keycloak_openid_client_scope.user_biological_read_scope.id
+  name                     = "audience-mapper"
+  add_to_id_token          = false
+  included_custom_audience = var.keycloak_environment.custom_audience
+}
+resource "keycloak_openid_client_scope" "user_biological_write_scope" {
+  realm_id               = data.keycloak_realm.smart_realm.id
+  name                   = "user/BiologicallyDerivedProduct.write"
+  description            = "Write access to BiologicallyDerivedProduct"
+  consent_screen_text    = "Permission to write BiologicallyDerivedProduct resources that the current user can access"
+  include_in_token_scope = true
+}
+
+resource "keycloak_openid_audience_protocol_mapper" "user_biological_write_audience_mapper" {
+  realm_id                 = keycloak_openid_client_scope.user_biological_write_scope.realm_id
+  client_scope_id          = keycloak_openid_client_scope.user_biological_write_scope.id
+  name                     = "audience-mapper"
+  add_to_id_token          = false
+  included_custom_audience = var.keycloak_environment.custom_audience
+}
+
+resource "keycloak_openid_client_scope" "user_biological_full_scope" {
+  realm_id               = data.keycloak_realm.smart_realm.id
+  name                   = "user/BiologicallyDerivedProduct.*"
+  description            = "Read and Write access to BiologicallyDerivedProduct"
+  consent_screen_text    = "Permission to read and write BiologicallyDerivedProduct resources that the current user can access"
+  include_in_token_scope = true
+}
+
+resource "keycloak_openid_audience_protocol_mapper" "user_biological_full_audience_mapper" {
+  realm_id                 = keycloak_openid_client_scope.user_biological_full_scope.realm_id
+  client_scope_id          = keycloak_openid_client_scope.user_biological_full_scope.id
+  name                     = "audience-mapper"
+  add_to_id_token          = false
+  included_custom_audience = var.keycloak_environment.custom_audience
+}
+// -------------------------------------------------------------------------------
+resource "keycloak_openid_client_scope" "user_bodystructure_read_scope" {
+  realm_id               = data.keycloak_realm.smart_realm.id
+  name                   = "user/BodyStructure.read"
+  description            = "Read access to BodyStructure"
+  consent_screen_text    = "Permission to read BodyStructure resources that the current user can access"
+  include_in_token_scope = true
+}
+
+resource "keycloak_openid_audience_protocol_mapper" "user_bodystructure_read_audience_mapper" {
+  realm_id                 = keycloak_openid_client_scope.user_bodystructure_read_scope.realm_id
+  client_scope_id          = keycloak_openid_client_scope.user_bodystructure_read_scope.id
+  name                     = "audience-mapper"
+  add_to_id_token          = false
+  included_custom_audience = var.keycloak_environment.custom_audience
+}
+
+resource "keycloak_openid_client_scope" "user_bodystructure_write_scope" {
+  realm_id               = data.keycloak_realm.smart_realm.id
+  name                   = "user/BodyStructure.write"
+  description            = "Write access to BodyStructure"
+  consent_screen_text    = "Permission to write BodyStructure resources that the current user can access"
+  include_in_token_scope = true
+}
+
+resource "keycloak_openid_audience_protocol_mapper" "user_bodystructure_write_audience_mapper" {
+  realm_id                 = keycloak_openid_client_scope.user_bodystructure_write_scope.realm_id
+  client_scope_id          = keycloak_openid_client_scope.user_bodystructure_write_scope.id
+  name                     = "audience-mapper"
+  add_to_id_token          = false
+  included_custom_audience = var.keycloak_environment.custom_audience
+}
+resource "keycloak_openid_client_scope" "user_bodystructure_full_scope" {
+  realm_id               = data.keycloak_realm.smart_realm.id
+  name                   = "user/BodyStructure.*"
+  description            = "Read and Write access to BodyStructure"
+  consent_screen_text    = "Permission to read and write BodyStructure resources that the current user can access"
+  include_in_token_scope = true
+}
+
+resource "keycloak_openid_audience_protocol_mapper" "user_bodystructure_full_audience_mapper" {
+  realm_id                 = keycloak_openid_client_scope.user_bodystructure_full_scope.realm_id
+  client_scope_id          = keycloak_openid_client_scope.user_bodystructure_full_scope.id
+  name                     = "audience-mapper"
+  add_to_id_token          = false
+  included_custom_audience = var.keycloak_environment.custom_audience
+}
+
+// -------------------------------------------------------------------------------
+resource "keycloak_openid_client_scope" "user_bundle_read_scope" {
+  realm_id               = data.keycloak_realm.smart_realm.id
+  name                   = "user/Bundle.read"
+  description            = "Read access to Bundle"
+  consent_screen_text    = "Permission to read Bundle resources that the current user can access"
+  include_in_token_scope = true
+}
+
+resource "keycloak_openid_audience_protocol_mapper" "user_bundle_read_audience_mapper" {
+  realm_id                 = keycloak_openid_client_scope.user_bundle_read_scope.realm_id
+  client_scope_id          = keycloak_openid_client_scope.user_bundle_read_scope.id
+  name                     = "audience-mapper"
+  add_to_id_token          = false
+  included_custom_audience = var.keycloak_environment.custom_audience
+}
+resource "keycloak_openid_client_scope" "user_bundle_write_scope" {
+  realm_id               = data.keycloak_realm.smart_realm.id
+  name                   = "user/Bundle.write"
+  description            = "Write access to Bundle"
+  consent_screen_text    = "Permission to write Bundle resources that the current user can access"
+  include_in_token_scope = true
+}
+
+resource "keycloak_openid_audience_protocol_mapper" "user_bundle_write_audience_mapper" {
+  realm_id                 = keycloak_openid_client_scope.user_bundle_write_scope.realm_id
+  client_scope_id          = keycloak_openid_client_scope.user_bundle_write_scope.id
+  name                     = "audience-mapper"
+  add_to_id_token          = false
+  included_custom_audience = var.keycloak_environment.custom_audience
+}
+
+resource "keycloak_openid_client_scope" "user_bundle_full_scope" {
+  realm_id               = data.keycloak_realm.smart_realm.id
+  name                   = "user/Bundle.*"
+  description            = "Read and Write access to Bundle"
+  consent_screen_text    = "Permission to read and write Bundle resources that the current user can access"
+  include_in_token_scope = true
+}
+
+resource "keycloak_openid_audience_protocol_mapper" "user_bundle_full_audience_mapper" {
+  realm_id                 = keycloak_openid_client_scope.user_bundle_full_scope.realm_id
+  client_scope_id          = keycloak_openid_client_scope.user_bundle_full_scope.id
+  name                     = "audience-mapper"
+  add_to_id_token          = false
+  included_custom_audience = var.keycloak_environment.custom_audience
+}
+// -------------------------------------------------------------------------------
+resource "keycloak_openid_client_scope" "user_capabilitystatement_read_scope" {
+  realm_id               = data.keycloak_realm.smart_realm.id
+  name                   = "user/CapabilityStatement.read"
+  description            = "Read access to CapabilityStatement"
+  consent_screen_text    = "Permission to read CapabilityStatement resources that the current user can access"
+  include_in_token_scope = true
+}
+
+resource "keycloak_openid_audience_protocol_mapper" "user_capabilitystatement_read_audience_mapper" {
+  realm_id                 = keycloak_openid_client_scope.user_capabilitystatement_read_scope.realm_id
+  client_scope_id          = keycloak_openid_client_scope.user_capabilitystatement_read_scope.id
+  name                     = "audience-mapper"
+  add_to_id_token          = false
+  included_custom_audience = var.keycloak_environment.custom_audience
+}
+resource "keycloak_openid_client_scope" "user_capabilitystatement_write_scope" {
+  realm_id               = data.keycloak_realm.smart_realm.id
+  name                   = "user/CapabilityStatement.write"
+  description            = "Write access to CapabilityStatement"
+  consent_screen_text    = "Permission to write CapabilityStatement resources that the current user can access"
+  include_in_token_scope = true
+}
+
+resource "keycloak_openid_audience_protocol_mapper" "user_capabilitystatement_write_audience_mapper" {
+  realm_id                 = keycloak_openid_client_scope.user_capabilitystatement_write_scope.realm_id
+  client_scope_id          = keycloak_openid_client_scope.user_capabilitystatement_write_scope.id
+  name                     = "audience-mapper"
+  add_to_id_token          = false
+  included_custom_audience = var.keycloak_environment.custom_audience
+}
+resource "keycloak_openid_client_scope" "user_capabilitystatement_full_scope" {
+  realm_id               = data.keycloak_realm.smart_realm.id
+  name                   = "user/CapabilityStatement.*"
+  description            = "Read and Write access to CapabilityStatement"
+  consent_screen_text    = "Permission to read and write CapabilityStatement resources that the current user can access"
+  include_in_token_scope = true
+}
+
+resource "keycloak_openid_audience_protocol_mapper" "user_capabilitystatement_full_audience_mapper" {
+  realm_id                 = keycloak_openid_client_scope.user_capabilitystatement_full_scope.realm_id
+  client_scope_id          = keycloak_openid_client_scope.user_capabilitystatement_full_scope.id
+  name                     = "audience-mapper"
+  add_to_id_token          = false
+  included_custom_audience = var.keycloak_environment.custom_audience
+}
+// -------------------------------------------------------------------------------
+resource "keycloak_openid_client_scope" "user_careplan_read_scope" {
+  realm_id               = data.keycloak_realm.smart_realm.id
+  name                   = "user/CarePlan.read"
+  description            = "Read access to CarePlan"
+  consent_screen_text    = "Permission to read CarePlan resources that the current user can access"
+  include_in_token_scope = true
+}
+
+resource "keycloak_openid_audience_protocol_mapper" "user_careplan_read_audience_mapper" {
+  realm_id                 = keycloak_openid_client_scope.user_careplan_read_scope.realm_id
+  client_scope_id          = keycloak_openid_client_scope.user_careplan_read_scope.id
+  name                     = "audience-mapper"
+  add_to_id_token          = false
+  included_custom_audience = var.keycloak_environment.custom_audience
+}
+
+resource "keycloak_openid_client_scope" "user_careplan_write_scope" {
+  realm_id               = data.keycloak_realm.smart_realm.id
+  name                   = "user/CarePlan.write"
+  description            = "Write access to CarePlan"
+  consent_screen_text    = "Permission to write CarePlan resources that the current user can access"
+  include_in_token_scope = true
+}
+
+resource "keycloak_openid_audience_protocol_mapper" "user_careplan_write_audience_mapper" {
+  realm_id                 = keycloak_openid_client_scope.user_careplan_write_scope.realm_id
+  client_scope_id          = keycloak_openid_client_scope.user_careplan_write_scope.id
+  name                     = "audience-mapper"
+  add_to_id_token          = false
+  included_custom_audience = var.keycloak_environment.custom_audience
+}
+
+resource "keycloak_openid_client_scope" "user_careplan_full_scope" {
+  realm_id               = data.keycloak_realm.smart_realm.id
+  name                   = "user/CarePlan.*"
+  description            = "Read and Write access to CarePlan"
+  consent_screen_text    = "Permission to read and write CarePlan resources that the current user can access"
+  include_in_token_scope = true
+}
+
+resource "keycloak_openid_audience_protocol_mapper" "user_careplan_full_audience_mapper" {
+  realm_id                 = keycloak_openid_client_scope.user_careplan_full_scope.realm_id
+  client_scope_id          = keycloak_openid_client_scope.user_careplan_full_scope.id
+  name                     = "audience-mapper"
+  add_to_id_token          = false
+  included_custom_audience = var.keycloak_environment.custom_audience
+}
+
+// -------------------------------------------------------------------------------
+resource "keycloak_openid_client_scope" "user_careteam_read_scope" {
+  realm_id               = data.keycloak_realm.smart_realm.id
+  name                   = "user/CareTeam.read"
+  description            = "Read access to CareTeam"
+  consent_screen_text    = "Permission to read CareTeam resources that the current user can access"
+  include_in_token_scope = true
+}
+
+resource "keycloak_openid_audience_protocol_mapper" "user_careteam_read_audience_mapper" {
+  realm_id                 = keycloak_openid_client_scope.user_careteam_read_scope.realm_id
+  client_scope_id          = keycloak_openid_client_scope.user_careteam_read_scope.id
+  name                     = "audience-mapper"
+  add_to_id_token          = false
+  included_custom_audience = var.keycloak_environment.custom_audience
+}
+resource "keycloak_openid_client_scope" "user_careteam_write_scope" {
+  realm_id               = data.keycloak_realm.smart_realm.id
+  name                   = "user/CareTeam.write"
+  description            = "Write access to CareTeam"
+  consent_screen_text    = "Permission to write CareTeam resources that the current user can access"
+  include_in_token_scope = true
+}
+
+resource "keycloak_openid_audience_protocol_mapper" "user_careteam_write_audience_mapper" {
+  realm_id                 = keycloak_openid_client_scope.user_careteam_write_scope.realm_id
+  client_scope_id          = keycloak_openid_client_scope.user_careteam_write_scope.id
+  name                     = "audience-mapper"
+  add_to_id_token          = false
+  included_custom_audience = var.keycloak_environment.custom_audience
+}
+resource "keycloak_openid_client_scope" "user_careteam_full_scope" {
+  realm_id               = data.keycloak_realm.smart_realm.id
+  name                   = "user/CareTeam.*"
+  description            = "Read and Write access to CareTeam"
+  consent_screen_text    = "Permission to read and write CareTeam resources that the current user can access"
+  include_in_token_scope = true
+}
+
+resource "keycloak_openid_audience_protocol_mapper" "user_careteam_full_audience_mapper" {
+  realm_id                 = keycloak_openid_client_scope.user_careteam_full_scope.realm_id
+  client_scope_id          = keycloak_openid_client_scope.user_careteam_full_scope.id
+  name                     = "audience-mapper"
+  add_to_id_token          = false
+  included_custom_audience = var.keycloak_environment.custom_audience
+}
+// -------------------------------------------------------------------------------
+resource "keycloak_openid_client_scope" "user_catalogentry_full_scope" {
+  realm_id               = data.keycloak_realm.smart_realm.id
+  name                   = "user/CatalogEntry.*"
+  description            = "Read and Write access to CatalogEntry"
+  consent_screen_text    = "Permission to read and write CatalogEntry resources that the current user can access"
+  include_in_token_scope = true
+}
+
+resource "keycloak_openid_audience_protocol_mapper" "user_catalogentry_full_audience_mapper" {
+  realm_id                 = keycloak_openid_client_scope.user_catalogentry_full_scope.realm_id
+  client_scope_id          = keycloak_openid_client_scope.user_catalogentry_full_scope.id
+  name                     = "audience-mapper"
+  add_to_id_token          = false
+  included_custom_audience = var.keycloak_environment.custom_audience
+}
+resource "keycloak_openid_client_scope" "user_catalogentry_read_scope" {
+  realm_id               = data.keycloak_realm.smart_realm.id
+  name                   = "user/CatalogEntry.read"
+  description            = "Read access to CatalogEntry"
+  consent_screen_text    = "Permission to read CatalogEntry resources that the current user can access"
+  include_in_token_scope = true
+}
+
+resource "keycloak_openid_audience_protocol_mapper" "user_catalogentry_read_audience_mapper" {
+  realm_id                 = keycloak_openid_client_scope.user_catalogentry_read_scope.realm_id
+  client_scope_id          = keycloak_openid_client_scope.user_catalogentry_read_scope.id
+  name                     = "audience-mapper"
+  add_to_id_token          = false
+  included_custom_audience = var.keycloak_environment.custom_audience
+}
+resource "keycloak_openid_client_scope" "user_catalogentry_write_scope" {
+  realm_id               = data.keycloak_realm.smart_realm.id
+  name                   = "user/CatalogEntry.write"
+  description            = "Write access to CatalogEntry"
+  consent_screen_text    = "Permission to write CatalogEntry resources that the current user can access"
+  include_in_token_scope = true
+}
+
+resource "keycloak_openid_audience_protocol_mapper" "user_catalogentry_write_audience_mapper" {
+  realm_id                 = keycloak_openid_client_scope.user_catalogentry_write_scope.realm_id
+  client_scope_id          = keycloak_openid_client_scope.user_catalogentry_write_scope.id
+  name                     = "audience-mapper"
+  add_to_id_token          = false
+  included_custom_audience = var.keycloak_environment.custom_audience
+}
+
+// -------------------------------------------------------------------------------
+resource "keycloak_openid_client_scope" "user_chargeitem_full_scope" {
+  realm_id               = data.keycloak_realm.smart_realm.id
+  name                   = "user/ChargeItem.*"
+  description            = "Read and Write access to ChargeItem"
+  consent_screen_text    = "Permission to read and write ChargeItem resources that the current user can access"
+  include_in_token_scope = true
+}
+
+resource "keycloak_openid_audience_protocol_mapper" "user_chargeitem_full_audience_mapper" {
+  realm_id                 = keycloak_openid_client_scope.user_chargeitem_full_scope.realm_id
+  client_scope_id          = keycloak_openid_client_scope.user_chargeitem_full_scope.id
+  name                     = "audience-mapper"
+  add_to_id_token          = false
+  included_custom_audience = var.keycloak_environment.custom_audience
+}
+resource "keycloak_openid_client_scope" "user_chargeitem_read_scope" {
+  realm_id               = data.keycloak_realm.smart_realm.id
+  name                   = "user/ChargeItem.read"
+  description            = "Read access to ChargeItem"
+  consent_screen_text    = "Permission to read ChargeItem resources that the current user can access"
+  include_in_token_scope = true
+}
+
+resource "keycloak_openid_audience_protocol_mapper" "user_chargeitem_read_audience_mapper" {
+  realm_id                 = keycloak_openid_client_scope.user_chargeitem_read_scope.realm_id
+  client_scope_id          = keycloak_openid_client_scope.user_chargeitem_read_scope.id
+  name                     = "audience-mapper"
+  add_to_id_token          = false
+  included_custom_audience = var.keycloak_environment.custom_audience
+}
+resource "keycloak_openid_client_scope" "user_chargeitem_write_scope" {
+  realm_id               = data.keycloak_realm.smart_realm.id
+  name                   = "user/ChargeItem.write"
+  description            = "Write access to ChargeItem"
+  consent_screen_text    = "Permission to write ChargeItem resources that the current user can access"
+  include_in_token_scope = true
+}
+
+resource "keycloak_openid_audience_protocol_mapper" "user_chargeitem_write_audience_mapper" {
+  realm_id                 = keycloak_openid_client_scope.user_chargeitem_write_scope.realm_id
+  client_scope_id          = keycloak_openid_client_scope.user_chargeitem_write_scope.id
+  name                     = "audience-mapper"
+  add_to_id_token          = false
+  included_custom_audience = var.keycloak_environment.custom_audience
+}
 // -------------------------------------------------------------------------------
 resource "keycloak_openid_client_scope" "user_condition_read_scope" {
   realm_id               = data.keycloak_realm.smart_realm.id
@@ -507,11 +912,10 @@ resource "keycloak_openid_client_scope" "user_condition_read_scope" {
 }
 
 resource "keycloak_openid_audience_protocol_mapper" "user_condition_read_audience_mapper" {
-  realm_id        = keycloak_openid_client_scope.user_condition_read_scope.realm_id
-  client_scope_id = keycloak_openid_client_scope.user_condition_read_scope.id
-  name            = "audience-mapper"
-  add_to_id_token = false
-
+  realm_id                 = keycloak_openid_client_scope.user_condition_read_scope.realm_id
+  client_scope_id          = keycloak_openid_client_scope.user_condition_read_scope.id
+  name                     = "audience-mapper"
+  add_to_id_token          = false
   included_custom_audience = var.keycloak_environment.custom_audience
 }
 // -------------------------------------------------------------------------------
@@ -793,10 +1197,10 @@ resource "keycloak_openid_client_scope" "user_organization_read_scope" {
 }
 
 resource "keycloak_openid_audience_protocol_mapper" "user_organization_read_audience_mapper" {
-  realm_id        = keycloak_openid_client_scope.user_organization_read_scope.realm_id
-  client_scope_id = keycloak_openid_client_scope.user_organization_read_scope.id
-  name            = "audience-mapper"
-  add_to_id_token = false
+  realm_id                 = keycloak_openid_client_scope.user_organization_read_scope.realm_id
+  client_scope_id          = keycloak_openid_client_scope.user_organization_read_scope.id
+  name                     = "audience-mapper"
+  add_to_id_token          = false
   included_custom_audience = var.keycloak_environment.custom_audience
 }
 // -------------------------------------------------------------------------------
@@ -810,10 +1214,10 @@ resource "keycloak_openid_client_scope" "user_patient_read_scope" {
 }
 
 resource "keycloak_openid_audience_protocol_mapper" "user_patient_read_audience_mapper" {
-  realm_id        = keycloak_openid_client_scope.user_patient_read_scope.realm_id
-  client_scope_id = keycloak_openid_client_scope.user_patient_read_scope.id
-  name            = "audience-mapper"
-  add_to_id_token = false
+  realm_id                 = keycloak_openid_client_scope.user_patient_read_scope.realm_id
+  client_scope_id          = keycloak_openid_client_scope.user_patient_read_scope.id
+  name                     = "audience-mapper"
+  add_to_id_token          = false
   included_custom_audience = var.keycloak_environment.custom_audience
 }
 // -------------------------------------------------------------------------------
@@ -844,27 +1248,27 @@ resource "keycloak_openid_client_scope" "user_practitioner_role_read_scope" {
   include_in_token_scope = true
 }
 resource "keycloak_openid_audience_protocol_mapper" "user_practitioner_role_read_audience_mapper" {
-  realm_id        = keycloak_openid_client_scope.user_practitioner_role_read_scope.realm_id
-  client_scope_id = keycloak_openid_client_scope.user_practitioner_role_read_scope.id
-  name            = "audience-mapper"
-  add_to_id_token = false
+  realm_id                 = keycloak_openid_client_scope.user_practitioner_role_read_scope.realm_id
+  client_scope_id          = keycloak_openid_client_scope.user_practitioner_role_read_scope.id
+  name                     = "audience-mapper"
+  add_to_id_token          = false
   included_custom_audience = var.keycloak_environment.custom_audience
 }
 // -------------------------------------------------------------------------------
 
 resource "keycloak_openid_client_scope" "user_procedure_read_scope" {
-  realm_id            = data.keycloak_realm.smart_realm.id
-  name                = "user/Procedure.read"
-  description         = "Read access to Procedures"
-  consent_screen_text = "Read access to Procedures for the current user"
+  realm_id               = data.keycloak_realm.smart_realm.id
+  name                   = "user/Procedure.read"
+  description            = "Read access to Procedures"
+  consent_screen_text    = "Read access to Procedures for the current user"
   include_in_token_scope = true
 }
 
 resource "keycloak_openid_audience_protocol_mapper" "user_procedure_read_audience_mapper" {
-  realm_id        = keycloak_openid_client_scope.user_procedure_read_scope.realm_id
-  client_scope_id = keycloak_openid_client_scope.user_procedure_read_scope.id
-  name            = "audience-mapper"
-  add_to_id_token = false
+  realm_id                 = keycloak_openid_client_scope.user_procedure_read_scope.realm_id
+  client_scope_id          = keycloak_openid_client_scope.user_procedure_read_scope.id
+  name                     = "audience-mapper"
+  add_to_id_token          = false
   included_custom_audience = var.keycloak_environment.custom_audience
 }
 // -------------------------------------------------------------------------------
@@ -878,10 +1282,10 @@ resource "keycloak_openid_client_scope" "user_provenance_write_scope" {
 }
 
 resource "keycloak_openid_audience_protocol_mapper" "user_provenance_write_audience_mapper" {
-  realm_id        = keycloak_openid_client_scope.user_provenance_write_scope.realm_id
-  client_scope_id = keycloak_openid_client_scope.user_provenance_write_scope.id
-  name            = "audience-mapper"
-  add_to_id_token = false
+  realm_id                 = keycloak_openid_client_scope.user_provenance_write_scope.realm_id
+  client_scope_id          = keycloak_openid_client_scope.user_provenance_write_scope.id
+  name                     = "audience-mapper"
+  add_to_id_token          = false
   included_custom_audience = var.keycloak_environment.custom_audience
 }
 // -------------------------------------------------------------------------------
