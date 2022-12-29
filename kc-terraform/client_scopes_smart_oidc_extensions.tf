@@ -19,7 +19,7 @@ resource "keycloak_generic_protocol_mapper" "oidc-patient-prefix-usermodel-attri
   client_scope_id = keycloak_openid_client_scope.fhir_user_scope.id
   name            = "fhirUser Mapper"
   protocol        = "openid-connect"
-  protocol_mapper  = "oidc-patient-prefix-usermodel-attribute-mapper"
+  protocol_mapper = "oidc-patient-prefix-usermodel-attribute-mapper"
   config = {
     "user.attribute"       = "resourceId",
     "claim.name"           = "fhirUser",
@@ -42,6 +42,37 @@ resource "keycloak_openid_audience_protocol_mapper" "launch_patient_context_audi
   add_to_id_token = false
 
   included_custom_audience = var.keycloak_environment.custom_audience
+}
+
+resource "keycloak_generic_protocol_mapper" "launch_patient_context_protocol_mapper" {
+  realm_id        = keycloak_openid_client_scope.launch_patient_context_scope.realm_id
+  client_scope_id = keycloak_openid_client_scope.launch_patient_context_scope.id
+  name            = "Patient ID Token Mapper"
+  protocol        = "openid-connect"
+  protocol_mapper = "oidc-usersessionmodel-note-mapper"
+  config = {
+    "user.session.note"          = "patient_id",
+    "claim.name"                 = "patient",
+    "jsonType.label"             = "String",
+    "id.token.claim"             = "false",
+    "access.token.claim"         = "false",
+    "access.tokenResponse.claim" = "true"
+  }
+}
+
+resource "keycloak_generic_protocol_mapper" "launch_patient_context_group_membership_protocol_mapper" {
+  realm_id        = keycloak_openid_client_scope.launch_patient_context_scope.realm_id
+  client_scope_id = keycloak_openid_client_scope.launch_patient_context_scope.id
+  name            = "Group Membership Mapper"
+  protocol        = "openid-connect"
+  protocol_mapper = "oidc-group-membership-mapper"
+  config = {
+    "claim.name"           = "group",
+    "full.path"            = "false",
+    "id.token.claim"       = "true",
+    "access.token.claim"   = "true",
+    "userinfo.token.claim" = "true"
+  }
 }
 
 resource "keycloak_openid_client_scope" "launch_user_context_scope" {
