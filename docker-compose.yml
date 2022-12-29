@@ -12,28 +12,9 @@ services:
       - "8443:8443"
     command:
       - --start-mode=normal
-    healthcheck:
-      test: "curl -sSL http://localhost:8080/auth"
     volumes:
       - ./kc_config/realm.json:/tmp/realm.json
     environment:
       - "KEYCLOAK_USER=admin"
       - "KEYCLOAK_PASSWORD=admin"
       - "KEYCLOAK_IMPORT=/tmp/realm.json"
-  swiss-fhir-client:
-    container_name: swiss-app
-    depends_on:
-      - keycloak
-    image: omarhoblos/swiss-on-fhir
-    ports:
-      - "4200:80"
-    environment:
-        - "FHIRENDPOINT_URI=http://localhost:9001/fhir-rs"
-        - "REDIRECT_URI=http://localhost:4200/index.html"
-        - "ISSUER_URI=http://localhost:8080/auth/realms/phsa"
-        - "LOGOUT_URI='http://localhost:8080/auth/realms/phsa/protocol/openid-connect/logout?cb=none&revoke=token&revoke=token_refresh'"
-        - "CLIENT_ID=swiss-app"
-        - "SCOPES='fhirUser launch/patient openid patient/*.read patient/Patient.write'"
-        - "ENABLE_HTTPS=false"
-        - "SKIP_ISSUER_CHECK=true"
-        - "STRICT_DISCOVERY_DOCUMENT_VALIDATION=true"

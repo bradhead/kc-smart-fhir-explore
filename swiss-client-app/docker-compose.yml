@@ -1,0 +1,16 @@
+services:
+  swiss-app:
+    container_name: swiss-app
+    image: omarhoblos/swiss-on-fhir
+    ports:
+      - "4200:80"
+    environment:
+      - "FHIRENDPOINT_URI=http://localhost:9001/fhir-rs"
+      - "REDIRECT_URI=http://localhost:4200/index.html"
+      - "ISSUER_URI=http://localhost:8080/auth/realms/phsa"
+      - "LOGOUT_URI='http://localhost:8080/auth/realms/phsa/protocol/openid-connect/logout?cb=none&revoke=token&revoke=token_refresh'"
+      - "CLIENT_ID=swiss-app"
+      - "SCOPES=openid fhirUser launch/patient patient/*.read patient/*.write"
+      - "ENABLE_HTTPS=false"
+      - "SKIP_ISSUER_CHECK=false"
+      - "STRICT_DISCOVERY_DOCUMENT_VALIDATION=true"

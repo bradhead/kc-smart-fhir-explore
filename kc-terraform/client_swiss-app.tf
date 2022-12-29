@@ -17,11 +17,8 @@ resource "keycloak_openid_client_default_scopes" "client_default_scopes" {
   client_id = keycloak_openid_client.smart-client.id
 
   default_scopes = [
-    "openid",
     "profile",
-    "web-origins",
-    keycloak_openid_client_scope.patient_observation_read_scope.name,
-    keycloak_openid_client_scope.patient_patient_read_scope.name
+    "web-origins"
   ]
 }
 resource "keycloak_openid_client_optional_scopes" "client_optional_scopes" {
@@ -35,11 +32,10 @@ resource "keycloak_openid_client_optional_scopes" "client_optional_scopes" {
     "phone",
     "microprofile-jwt",
     keycloak_openid_client_scope.fhir_user_scope.name,
-    keycloak_openid_client_scope.launch_user_context_scope.name,
     keycloak_openid_client_scope.launch_patient_context_scope.name,
     keycloak_openid_client_scope.patient_all_write_scope.name,
     keycloak_openid_client_scope.patient_all_read_scope.name,
-    keycloak_openid_client_scope.patient_medication_dispense_read_scope.name,
+
   ]
 }
 

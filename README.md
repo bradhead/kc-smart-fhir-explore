@@ -2,24 +2,43 @@
 
 Prototyping by Bradley.Head@phsa.ca, Enterprise Architect IDAM.
 
-# Run Docker compose
+## Run Docker compose
 
-'docker compose up
+```shell
+docker compose up
+```
 
 Now login to the newly built Keycloak using the admin user, and go to the terraform client in the realm created
 and regenerate the client secret. Then copy that into the terraform.tfvars file. See the example tfvars file.
 
-``cd kc-terraform ; terraform init
+```shell
+cd kc-terraform ; terraform init
 
-` terraform plan -var-file terraform.tfvars
+terraform plan -var-file terraform.tfvars
 
-` terraform apply -var-file terraform.tfvars
+terraform apply -var-file terraform.tfvars
+```
 
-Now, Keycloak should be setup with all the SMART on FHIR scopes, etc. 
+Now, Keycloak should be setup with all the SMART on FHIR scopes, etc.
 
-Next try running the swiss-app,
+## Running the test client app
 
+Next try running the swiss-app.
 
-` http://localhost:4200
+Open a browser and go to:
 
-and try to login.  
+```shell
+ http://localhost:4200
+ ```
+
+## Viewing the Keycloak Admin Console
+
+Open a browser and go to:
+
+```shell
+http://localhost:8080
+```
+
+### Viewing the KC Account console for a user
+
+http://localhost:8080/auth/realms/phsa/account/#/
