@@ -4,12 +4,20 @@ Prototyping by Bradley.Head@phsa.ca, Enterprise Architect IDAM.
 
 ## Run Docker compose
 
+1. Run docker compose to build and run keycloak with SMART on FHIR extensions.
+
 ```shell
 docker compose up
 ```
 
-Now login to the newly built Keycloak using the admin user, and go to the terraform client in the realm created
-and regenerate the client secret. Then copy that into the terraform.tfvars file. See the example tfvars file.
+2. Now login to the newly built Keycloak using the admin user, and go to the realm PHSA.
+3. From Clients, select the 'terraform' client in the realm.
+4. Select 'Credentials'
+5. Hit the 'Regenerate Secret' button, then
+6. Copy the Secret to your paste board
+7. Create a terraform.tfvars file in the kc-terraform folder.  Refer to the example file provided.
+8. Now paste the Secret value from your paste board into your terraform.tfvars file.
+9. Now, we can apply the terraform configuraitons that will setup the PHSA realm to have SMART on FHIR settings, scopes, mappers, etc.
 
 ```shell
 cd kc-terraform ; terraform init
@@ -19,7 +27,7 @@ terraform plan -var-file terraform.tfvars
 terraform apply -var-file terraform.tfvars
 ```
 
-Now, Keycloak should be setup with all the SMART on FHIR scopes, etc.
+10. Now, Keycloak should be setup with all the SMART on FHIR scopes, etc.
 
 ## Running the test client app
 
