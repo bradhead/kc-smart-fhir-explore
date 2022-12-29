@@ -4,7 +4,7 @@ services:
     container_name: keycloak-smart-fhir
     image: kc-smart-fhir-poc
     build:
-      context: https://github.com/Alvearie/keycloak-extensions-for-fhir.git#main
+      context: "https://github.com/Alvearie/keycloak-extensions-for-fhir.git#main"
       dockerfile: Dockerfile
     restart: always
     ports: 
@@ -32,7 +32,7 @@ services:
         - "REDIRECT_URI=http://localhost:4200/index.html"
         - "ISSUER_URI=http://localhost:8080/auth/realms/phsa"
         - "LOGOUT_URI='http://localhost:8080/auth/realms/phsa/protocol/openid-connect/logout?cb=none&revoke=token&revoke=token_refresh'"
-        - "CLIENT_ID=swiss"
+        - "CLIENT_ID=swiss-app"
         - "SCOPES='fhirUser offline_access launch/patient openid patient/*.read patient/*.write'"
         - "ENABLE_HTTPS=false"
         - "SKIP_ISSUER_CHECK=false"

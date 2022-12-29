@@ -1,19 +1,6 @@
 {
   "realm": "phsa",
   "enabled": true,
-  "users": [
-    {
-      "username": "brad",
-      "enabled": true,
-      "credentials": [
-        {
-          "type": "password",
-          "value": "brad"
-        }
-      ],
-      "realmRoles": ["admin"]
-    }
-  ],
   "roles": {
     "realm": [
       {

@@ -1,6 +1,6 @@
-#An example custom protocol mapper. 
+# An example custom protocol mapper
 
-This example represents an example where you would augment claims into a token where this claim does not exist in the base account or base identity using for the keycloak account. 
+This example represents an example where you would augment claims into a token where this claim does not exist in the base account or base identity using for the keycloak account.
 
 For example, this could call out to a provider registry or other authoritative source of truth to determine if the provider in question has any restrictions or sanctions, or whether they are still licensed. This would then inject a claim that says they are 'member in good standing' based on the retrieved claim.  
 
