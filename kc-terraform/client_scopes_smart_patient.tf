@@ -15,6 +15,23 @@ resource "keycloak_openid_audience_protocol_mapper" "patient_all_read_audience_m
   included_custom_audience = var.keycloak_environment.custom_audience
 }
 
+resource "keycloak_openid_client_scope" "patient_all_write_scope" {
+  realm_id               = data.keycloak_realm.smart_realm.id
+  name                   = "patient/*.write"
+  description            = "Write access to all data"
+  consent_screen_text    = "Write access to all data for the patient"
+  include_in_token_scope = true
+}
+
+resource "keycloak_openid_audience_protocol_mapper" "patient_all_write_audience_mapper" {
+  realm_id        = keycloak_openid_client_scope.patient_all_write_scope.realm_id
+  client_scope_id = keycloak_openid_client_scope.patient_all_write_scope.id
+  name            = "audience-mapper"
+  add_to_id_token = false
+
+  included_custom_audience = var.keycloak_environment.custom_audience
+}
+
 resource "keycloak_openid_client_scope" "patient_allergy_intolerance_read_scope" {
   realm_id               = data.keycloak_realm.smart_realm.id
   name                   = "patient/AllergyIntolerance.read"
@@ -379,6 +396,22 @@ resource "keycloak_openid_client_scope" "patient_patient_read_scope" {
 resource "keycloak_openid_audience_protocol_mapper" "patient_patient_read_audience_mapper" {
   realm_id                 = keycloak_openid_client_scope.patient_patient_read_scope.realm_id
   client_scope_id          = keycloak_openid_client_scope.patient_patient_read_scope.id
+  name                     = "audience-mapper"
+  add_to_id_token          = false
+  included_custom_audience = var.keycloak_environment.custom_audience
+}
+
+resource "keycloak_openid_client_scope" "patient_patient_write_scope" {
+  realm_id               = data.keycloak_realm.smart_realm.id
+  name                   = "patient/Patient.write"
+  description            = "Write access to Patient"
+  consent_screen_text    = "Write access to Patient for the patient"
+  include_in_token_scope = true
+}
+
+resource "keycloak_openid_audience_protocol_mapper" "patient_patient_write_audience_mapper" {
+  realm_id                 = keycloak_openid_client_scope.patient_patient_write_scope.realm_id
+  client_scope_id          = keycloak_openid_client_scope.patient_patient_write_scope.id
   name                     = "audience-mapper"
   add_to_id_token          = false
   included_custom_audience = var.keycloak_environment.custom_audience

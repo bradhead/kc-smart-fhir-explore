@@ -107,11 +107,12 @@
         }
       ],
       "defaultClientScopes": [
-        "web-origins",
         "acr",
-        "roles",
+        "email",
+        "openid",
         "profile",
-        "email"
+        "roles",
+        "web-origins"
       ],
       "optionalClientScopes": [
         "address",
