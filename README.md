@@ -41,4 +41,6 @@ http://localhost:8080
 
 ### Viewing the KC Account console for a user
 
+```shell
 http://localhost:8080/auth/realms/phsa/account/#/
+```
