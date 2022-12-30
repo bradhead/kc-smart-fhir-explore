@@ -5,7 +5,7 @@ services:
     ports:
       - "4200:80"
     environment:
-      - "FHIRENDPOINT_URI=http://localhost:9001/fhir-rs"
+      - "FHIRENDPOINT_URI=http://localhost:9900/hapi-fhir-jpaserver/fhir/"
       - "REDIRECT_URI=http://localhost:4200/index.html"
       - "ISSUER_URI=http://localhost:8080/auth/realms/phsa"
       - "LOGOUT_URI='http://localhost:8080/auth/realms/phsa/protocol/openid-connect/logout?cb=none&revoke=token&revoke=token_refresh'"

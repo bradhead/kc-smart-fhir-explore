@@ -1,0 +1,17 @@
+services:
+  fhir-server:
+    container_name: fhir-server
+    image: jpa_oidc_fhir_server
+    build:
+      #context: https://github.com/elementechemlyn/jpa_oidc_fhir_server.git#master
+      context: https://github.com/bradhead/jpa_oidc_fhir_server.git#master
+      dockerfile: Dockerfile
+    ports:
+      - "9900:8080"
+    volumes:
+      - ./config:/config
+    environment:
+      - HAPI_OAUTH_WHITELIST=http://localhost:4200
+    command:
+      - catalina.sh
+      - run
