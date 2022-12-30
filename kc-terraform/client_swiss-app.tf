@@ -39,7 +39,7 @@ resource "keycloak_openid_client_optional_scopes" "client_optional_scopes" {
   ]
 }
 
-resource "keycloak_openid_user_attribute_protocol_mapper" "pdid" {
+resource "keycloak_openid_user_attribute_protocol_mapper" "provider_identifier" {
   realm_id  = keycloak_openid_client.smart-client.realm_id
   client_id = keycloak_openid_client.smart-client.id
   name                = "provider_identifier"
@@ -50,7 +50,7 @@ resource "keycloak_openid_user_attribute_protocol_mapper" "pdid" {
   add_to_access_token = true
   add_to_userinfo     = false
 }
-resource "keycloak_openid_user_attribute_protocol_mapper" "pdid" {
+resource "keycloak_openid_user_attribute_protocol_mapper" "provider_status" {
   realm_id  = keycloak_openid_client.smart-client.realm_id
   client_id = keycloak_openid_client.smart-client.id
   name                = "provider_status"
