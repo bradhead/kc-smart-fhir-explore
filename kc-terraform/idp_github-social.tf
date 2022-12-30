@@ -14,5 +14,4 @@ resource "keycloak_oidc_identity_provider" "github" {
   client_secret         = var.keycloak_idp_github.client_secret
   default_scopes        = "openid profile email"
   validate_signature    = true
-  jwks_url              = "${var.keycloak_idp_github.base_url}${var.keycloak_idp_github.jwks_path}"
 }
