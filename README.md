@@ -6,8 +6,11 @@ Prototyping by Bradley.Head@phsa.ca, Enterprise Architect IDAM.
 
 1. Run docker compose to build and run keycloak with SMART on FHIR extensions.
 
+This includes building a starting point realm, which I have set to phsa. You can change that
+in the keycloak/config/realm.json file.
+
 ```shell
-docker compose up
+cd keycloak ; docker compose up -d
 ```
 
 2. Now login to the newly built Keycloak using the admin user, and go to the realm PHSA.

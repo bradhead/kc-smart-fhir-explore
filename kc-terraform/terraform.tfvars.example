@@ -19,7 +19,16 @@ client_smart_app = {
 }
 
 keycloak_idp_azure_ad = {
+    alias         = "azure_ad"
     base_url      = "https://tbd"
+    userinfo_path = "https://graph.microsoft.com/oidc/userinfo"
+    client_id     = "tbd"
+    client_secret = "tbd"
+}
+
+keycloak_idp_github = {
+    alias         = "github"
+    base_url      = "https://www.github.com"
     client_id     = "tbd"
     client_secret = "tbd"
 }

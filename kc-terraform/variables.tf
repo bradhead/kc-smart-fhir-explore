@@ -38,5 +38,19 @@ variable "keycloak_idp_azure_ad" {
     jwks_path     = optional(string, "/discovery/v2.0/keys/")
   })
   sensitive   = true
-  description = "The configuration settings for the Azure AD Identity Provider"
+  description = "Configuration settings for the Azure AD Identity Provider"
+}
+
+variable "keycloak_idp_github" {
+  type = object({
+    alias         = string
+    base_url      = string
+    auth_path     = optional(string, "/login/oauth/authorize/")
+    token_path    = optional(string, "/login/oauth/access_token")
+    userinfo_path = optional(string, "/login/oauth/userinfo")
+    client_id     = string
+    client_secret = string
+  })
+  sensitive   = true
+  description = "Configuration settings for the GitHub Social Identity Provider"
 }

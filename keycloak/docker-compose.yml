@@ -13,7 +13,7 @@ services:
     command:
       - --start-mode=normal
     volumes:
-      - ./kc_config/realm.json:/tmp/realm.json
+      - ./realm.json:/tmp/realm.json
     environment:
       - "KEYCLOAK_USER=admin"
       - "KEYCLOAK_PASSWORD=admin"
