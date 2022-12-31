@@ -8,7 +8,7 @@ services:
       - "FHIRENDPOINT_URI=http://localhost:9900/hapi-fhir-jpaserver/fhir"
       - "REDIRECT_URI=http://localhost:4200/index.html"
       - "ISSUER_URI=http://localhost:8080/auth/realms/phsa"
-      - "LOGOUT_URI='http://localhost:8080/auth/realms/phsa/protocol/openid-connect/logout?cb=none&revoke=token&revoke=token_refresh'"
+      - "LOGOUT_URI='http://localhost:8080/auth/realms/phsa/protocol/openid-connect/logout?cb=none&revoke=token&revoke=token_refresh&id_token_hint=none'"
       - "CLIENT_ID=swiss-app"
       - "SCOPES=openid fhirUser launch/patient patient/*.read patient/*.write"
       - "ENABLE_HTTPS=false"
