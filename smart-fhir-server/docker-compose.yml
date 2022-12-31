@@ -8,10 +8,6 @@ services:
       dockerfile: Dockerfile
     ports:
       - "9900:8080"
-    volumes:
-      - ./config:/config
-    environment:
-      - HAPI_OAUTH_WHITELIST=http://localhost:4200
     command:
       - catalina.sh
       - run
