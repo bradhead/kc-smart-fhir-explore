@@ -41,6 +41,22 @@ variable "keycloak_idp_azure_ad" {
   description = "Configuration settings for the Azure AD Identity Provider"
 }
 
+variable "keycloak_idp_provider_kc" {
+  type = object({
+    alias         = string
+    base_url      = string
+    auth_path     = optional(string, "/protocol/openid-connect/auth")
+    token_path    = optional(string, "/protocol/openid-connect/token")
+    userinfo_path = optional(string, "/protocol/openid-connect/userinfo")
+    client_id     = string
+    client_secret = string
+    issuer_path   = optional(string, "/")
+    jwks_path     = optional(string, "/protocol/openid-connect/certs")
+  })
+  sensitive   = true
+  description = "Configuration settings for the Provider Identity Provider (Keycloak)"
+}
+
 variable "keycloak_idp_github" {
   type = object({
     alias         = string

@@ -5,7 +5,7 @@ resource "keycloak_openid_client" "phsa-as-client" {
   description                  = "Another Keycloak instance acting as an AS"
   enabled                      = true
   access_type                  = "CONFIDENTIAL"
-  standard_flow_enabled        = false
+  standard_flow_enabled        = true
   direct_access_grants_enabled = true
   valid_redirect_uris          = var.client_phsa_as.valid_redirects
   web_origins                  = var.client_phsa_as.web_origins
