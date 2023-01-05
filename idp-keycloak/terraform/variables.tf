@@ -16,7 +16,7 @@ variable "keycloak_terraform_client" {
   description = "The keycloak client and secret used by Terraform to create resources"
 }
 
-variable "client_phsa_keycloak" {
+variable "client_phsa_as" {
   type = object({
     id              = optional(string, "phsa-as")
     valid_redirects = list(string)

@@ -1,5 +1,5 @@
 resource "keycloak_oidc_identity_provider" "azure_ad" {
-  realm                 = data.keycloak_realm.smart_realm.id
+  realm                 = data.keycloak_realm.this-realm.id
   alias                 = var.keycloak_idp_azure_ad.alias
   display_name          = "ZedWerks Azure Active Directory"
   enabled               = true
