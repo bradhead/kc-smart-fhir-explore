@@ -1,0 +1,13 @@
+services:
+  smart-launcher:
+    container_name: smart-launcher
+    image: smart-launcher
+    build:
+      context: https://github.com/smart-on-fhir/smart-launcher.git#master
+      dockerfile: Dockerfile
+    ports:
+      - "4200:80"
+    environment:
+      - FHIR_SERVER_R4=https://r4.smarthealthit.org
+      - PICKER_CONFIG_R4=r4
+      - NODE_ENV=development

@@ -1,0 +1,35 @@
+// terraform.tfvars
+// Rename by removing the .example extension
+// and set real values
+//
+keycloak_environment = {
+    realm = "realm-name-goes-here"
+    base_url = "http://localhost:8080/auth"   
+}
+
+keycloak_terraform_client = {
+    id     = "terraform"
+    secret = "clieint-secret-goes-here"
+}
+
+client_smart_app = {
+    id              = "smart web app name goes here"
+    valid_redirects = ["http://localhost:4200/*"]
+    web_origins     = ["http://localhost:4200"]
+}
+
+keycloak_idp_azure_ad = {
+    alias         = "azure_ad"
+    base_url      = "https://tbd"
+    userinfo_path = "https://graph.microsoft.com/oidc/userinfo"
+    client_id     = "tbd"
+    client_secret = "tbd"
+}
+
+keycloak_idp_github = {
+    alias         = "github"
+    base_url      = "https://www.github.com"
+    client_id     = "tbd"
+    client_secret = "tbd"
+}
+

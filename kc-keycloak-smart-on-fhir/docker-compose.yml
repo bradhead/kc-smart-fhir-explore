@@ -1,0 +1,22 @@
+version: '3.8'
+services:
+  keycloak:
+    image: quay.io/keycloak/keycloak:18.0.2
+    container_name: keycloak
+    environment:
+      - KEYCLOAK_ADMIN=admin
+      - KEYCLOAK_ADMIN_PASSWORD=admin
+      - KC_HOSTNAME=localhost
+      - KC_HTTP_ENABLED=true
+      - KC_HOSNTAME_STRICT=false
+    ports: 
+      - "8080:8080"
+      - "8443:8443"
+    expose:
+      - 8080
+    command:
+      - start-dev
+      - --import-realm
+    restart: unless-stopped
+    volumes:
+      - ./config/realm.json:/opt/keycloak/data/import/realm.json

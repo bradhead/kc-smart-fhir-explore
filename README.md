@@ -10,17 +10,19 @@ This includes building a starting point realm, which I have set to phsa. You can
 in the keycloak/config/realm.json file.
 
 ```shell
-cd keycloak ; docker compose up -d
+cd kc_k ; docker compose up -d
 ```
 
 2. Now login to the newly built Keycloak using the admin user, and go to the realm PHSA.
 3. From Clients, select the 'terraform' client in the realm.
-4. Select 'Credentials'
-5. Hit the 'Regenerate Secret' button, then
-6. Copy the Secret to your paste board
-7. Create a terraform.tfvars file in the kc-terraform folder.  Refer to the example file provided.
-8. Now paste the Secret value from your paste board into your terraform.tfvars file.
-9. Now, we can apply the terraform configuraitons that will setup the PHSA realm to have SMART on FHIR settings, scopes, mappers, etc.
+4. Select 'Service Account Roles' tab.
+5. Under 'Client Roles', choose 'realm-management', and select 'realm-admin' from the list of Available Roles and click 'Add selected' button. Save
+6. Now, Select 'Credentials' tab of the terraform client.
+7. Tap the 'Regenerate Secret' button, then
+8. Copy the Secret to your paste board
+9. Create a terraform.tfvars file in the kc-terraform folder.  Refer to the example file provided.
+10. Now paste the Secret value from your paste board into your terraform.tfvars file.
+11. Now, we can apply the terraform configurations that will setup the PHSA realm to have SMART on FHIR settings, scopes, mappers, etc.
 
 ```shell
 cd kc-terraform ; terraform init
