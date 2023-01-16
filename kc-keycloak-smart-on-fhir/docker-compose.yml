@@ -11,12 +11,12 @@ services:
       - KC_HOSNTAME_STRICT=false
     ports: 
       - "8080:8080"
-      - "8443:8443"
     expose:
       - 8080
-    command:
-      - start-dev
-      - --import-realm
-    restart: unless-stopped
+    entrypoint: /bin/sh
+    command: 
+      - -c 
+      - "/opt/keycloak/bin/kc.sh build && /opt/keycloak/bin/kc.sh start-dev --import-realm"
     volumes:
+      - ./openmrs-auth-provider/target/openmrs-keycloak-smart-auth-1.0.0-SNAPSHOT.jar:/opt/keycloak/providers/openmrs-keycloak-smart-auth-1.0.0-SNAPSHOT.jar
       - ./config/realm.json:/opt/keycloak/data/import/realm.json
