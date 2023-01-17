@@ -14,5 +14,4 @@ The Resource Server would then inspect the bearer token and have a policy enforc
 
 ## Reference
 
-https://medium.com/@pavithbuddhima/how-to-add-custom-claims-to-jwt-tokens-from-an-external-source-in-keycloak-52bd1ff596d3
-
+<https://medium.com/@pavithbuddhima/how-to-add-custom-claims-to-jwt-tokens-from-an-external-source-in-keycloak-52bd1ff596d3>
