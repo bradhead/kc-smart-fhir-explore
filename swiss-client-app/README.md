@@ -11,6 +11,6 @@ docker compose up --force-recreate --remove-orphans -d
 
 ## Editing requested scopes
 
-1. Open the docker-compose.yml file here, and 
+1. Open the docker-compose.yml file here, and
 2. Add or remove scopes from the environment variable SCOPES
 3. Run docker compose command as shown above.

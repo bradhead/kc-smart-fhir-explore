@@ -27,7 +27,6 @@ docker compose up -d
 6. Tap the 'Regenerate Secret' button, then
 7. Copy the Secret to your paste board
 
-
 ## Run Terraform
 
  Now, we can apply the terraform configurations that will setup the PHSA realm to have SMART on FHIR settings, scopes, mappers, etc.
