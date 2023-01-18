@@ -1,5 +1,5 @@
 {
-  "realm": "smart-health",
+  "realm": "smart",
   "enabled": true,
   "clientScopes": {
     "fhirUser": {

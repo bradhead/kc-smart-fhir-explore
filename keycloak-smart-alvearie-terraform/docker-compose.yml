@@ -2,7 +2,7 @@ version: '3.8'
 services:
   keycloak:
     image: quay.io/keycloak/keycloak:18.0.2
-    container_name: keycloak-alvearie
+    container_name: keycloak-smart
     environment:
       - KEYCLOAK_ADMIN=admin
       - KEYCLOAK_ADMIN_PASSWORD=admin

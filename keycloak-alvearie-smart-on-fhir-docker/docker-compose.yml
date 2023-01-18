@@ -6,15 +6,13 @@ services:
     build:
       context: "https://github.com/Alvearie/keycloak-extensions-for-fhir.git#main"
       dockerfile: Dockerfile
-    restart: always
     ports: 
       - "8081:8080"
     command:
       - --start-mode=normal
-
     volumes:
-      - ./config/smart-config-reference/realm-smart.json:/tmp/realm.json
+      - ./config/keycloak-config.json:/opt/keycloak/conf/keycloak.json
+      - ./config/realm-smart.json:/tmp/realm.json
     environment:
-     # - "KEYCLOAK_USER=admin"
       - "KEYCLOAK_PASSWORD=admin"
       - "KEYCLOAK_IMPORT=/tmp/realm.json"
