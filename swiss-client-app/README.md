@@ -5,7 +5,7 @@ The client is defined in the terraform configurations for KC.
 
 ## Running
 
-```shell
+```code
 docker compose up --force-recreate --remove-orphans -d
 ```
 
