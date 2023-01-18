@@ -1,0 +1,1 @@
+docker run -v ./conf:/config -e KEYCLOAK_BASE_URL=http://host.docker.internal:8080/auth alvearie/keycloak-config -configFile config/keycloak-config.json
