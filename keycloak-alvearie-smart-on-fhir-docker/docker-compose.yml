@@ -8,13 +8,13 @@ services:
       dockerfile: Dockerfile
     restart: always
     ports: 
-      - "8080:8080"
-      - "8443:8443"
+      - "8081:8080"
     command:
       - --start-mode=normal
+
     volumes:
-      - ./realm.json:/tmp/realm.json
+      - ./config/smart-config-reference/realm-smart.json:/tmp/realm.json
     environment:
-      - "KEYCLOAK_USER=admin"
+     # - "KEYCLOAK_USER=admin"
       - "KEYCLOAK_PASSWORD=admin"
       - "KEYCLOAK_IMPORT=/tmp/realm.json"
