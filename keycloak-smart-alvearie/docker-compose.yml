@@ -18,7 +18,7 @@ services:
       - -c 
       - "/opt/keycloak/bin/kc.sh build && /opt/keycloak/bin/kc.sh start-dev --import-realm"
     volumes:
-      - ./alvearie-provider/target/providers/jboss-fhir-provider-0.5.0-SNAPSHOT-jboss-modules.jar:/opt/keycloak/providers/jboss-fhir-provider-0.5.0-SNAPSHOT-jboss-modules.jar
+      - ./alvearie-provider/target/providers/jboss-fhir-provider-0.5.0-SNAPSHOT-jboss-modules.jar:/opt/keycloak/modules/layers/keycloak/jboss-fhir-provider-0.5.0-SNAPSHOT-jboss-modules.jar
       - ./alvearie-provider/target/providers/jboss-fhir-provider-0.5.0-SNAPSHOT.jar:/opt/keycloak/providers/jboss-fhir-provider-0.5.0-SNAPSHOT.jar
       - ./alvearie-provider/target/providers/keycloak-extensions-0.5.0-SNAPSHOT.jar:/opt/keycloak/providers/keycloak-extensions-0.5.0-SNAPSHOT.jar
       - ./config/realm.json:/opt/keycloak/data/import/realm.json
