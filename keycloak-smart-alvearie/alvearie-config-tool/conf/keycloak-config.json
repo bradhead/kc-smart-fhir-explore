@@ -706,7 +706,7 @@
 										"authenticatorFlow": false,
 										"configAlias": "localhost",
 										"config": {
-											"audiences": "http://localhost:9001/fhir-rs"
+											"audiences": "http://localhost:8000/"
 										}
 									},
 									"Username Password Form": {
@@ -722,7 +722,7 @@
 										"authenticatorFlow": false,
 										"configAlias": "host.docker",
 										"config": {
-											"internalFhirUrl": "http://localhost:9001/fhir-rs"
+											"internalFhirUrl": "http://localhost:8000/"
 										}
 									}
 								}
