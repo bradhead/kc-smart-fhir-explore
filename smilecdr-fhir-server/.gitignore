@@ -1,2 +1,2 @@
 docker-image/*.tar
-runtime/*
+runtime*
