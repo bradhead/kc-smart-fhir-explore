@@ -1,0 +1,1 @@
+docker image load -i smilecdr-2022.11.R03-docker.tar
