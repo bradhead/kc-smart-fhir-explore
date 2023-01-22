@@ -1,24 +1,25 @@
 version: '3.8'
 services:
   keycloak:
-    image: quay.io/keycloak/keycloak:18.0.2
-    container_name: keycloak-smart
+    image: quay.io/keycloak/keycloak:18.0.2-legacy
+    container_name: keycloak-smart-18.0.2-legacy
     environment:
+      - KEYCLOAK_USER=admin
+      - KEYCLOAK_PASSWORD=admin
       - KEYCLOAK_ADMIN=admin
       - KEYCLOAK_ADMIN_PASSWORD=admin
       - KC_HOSTNAME=localhost
       - KC_HTTP_ENABLED=true
       - KC_HOSNTAME_STRICT=false
+      - KC_IMPORT
     ports: 
       - "8080:8080"
     expose:
       - 8080
-    entrypoint: /bin/sh
     command: 
-      - -c 
-      - "/opt/keycloak/bin/kc.sh build && /opt/keycloak/bin/kc.sh start-dev --import-realm"
+      - --start-mode=normal 
     volumes:
-      - ./alvearie-provider/target/providers/jboss-fhir-provider-0.5.0-SNAPSHOT-jboss-modules.jar:/opt/keycloak/modules/layers/keycloak/jboss-fhir-provider-0.5.0-SNAPSHOT-jboss-modules.jar
-      - ./alvearie-provider/target/providers/jboss-fhir-provider-0.5.0-SNAPSHOT.jar:/opt/keycloak/providers/jboss-fhir-provider-0.5.0-SNAPSHOT.jar
-      - ./alvearie-provider/target/providers/keycloak-extensions-0.5.0-SNAPSHOT.jar:/opt/keycloak/providers/keycloak-extensions-0.5.0-SNAPSHOT.jar
-      - ./config/realm.json:/opt/keycloak/data/import/realm.json
+      - ./alvearie/target/providers/jboss-fhir-provider-0.5.0-SNAPSHOT-jboss-modules.jar:/opt/jboss/keycloak/modules/system/layers/base/jboss-fhir-provider-0.5.0-SNAPSHOT-jboss-modules.jar
+      - ./alvearie/target/providers/jboss-fhir-provider-0.5.0-SNAPSHOT.jar:/opt/jboss/keycloak/standalone/deployments/jboss-fhir-provider-0.5.0-SNAPSHOT.jar
+      - ./alvearie/target/providers/keycloak-extensions-0.5.0-SNAPSHOT.jar:/opt/jboss/keycloak//standalone/deployments/keycloak-extensions-0.5.0-SNAPSHOT.jar
+      - ./config/realm.json:/opt/jboss/keycloak/data/import/realm.json

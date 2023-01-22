@@ -25,7 +25,7 @@ services:
       - "ISSUER_URI=http://localhost:8080/realms/test"
       - "LOGOUT_URI='http://localhost:8080/realms/test/protocol/openid-connect/logout?cb=none&revoke=token&revoke=token_refresh&id_token_hint=none'"
       - "CLIENT_ID=swiss-app"
-      - "SCOPES=openid fhirUser launch/patient patient/*.read"
+      - "SCOPES=openid patient/*.read"
       - "ENABLE_HTTPS=false"
       - "SKIP_ISSUER_CHECK=false"
       - "STRICT_DISCOVERY_DOCUMENT_VALIDATION=true"
