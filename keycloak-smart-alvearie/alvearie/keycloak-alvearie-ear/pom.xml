@@ -9,19 +9,19 @@
 	</parent>
 	<modelVersion>4.0.0</modelVersion>
 
-	<artifactId>openmrs-keycloak-ear</artifactId>
+	<artifactId>alvearie-keycloak-extensions-ear</artifactId>
 	<packaging>ear</packaging>
 
 	<dependencies>
 		<dependency>
-			<groupId>${project.parent.groupId}</groupId>
+			<groupId>org.alvearie.keycloak-extensions</groupId>
 			<artifactId>openmrs-keycloak-smart-auth</artifactId>
 			<version>${project.parent.version}</version>
 		</dependency>
 	</dependencies>
 
 	<build>
-		<finalName>${project.parent.artifactId}-${project.version}</finalName>
+		<finalName>keycloak-extensions-1.0.0</finalName>
 		<plugins>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>

@@ -11,15 +11,17 @@ services:
       - KC_HOSTNAME=localhost
       - KC_HTTP_ENABLED=true
       - KC_HOSNTAME_STRICT=false
-      - KC_IMPORT
+      - KC_IMPORT_REALM=/opt/jboss/keycloak/data/import/realm.json
     ports: 
       - "8080:8080"
     expose:
       - 8080
+    entrypoint: /bin/sh
     command: 
-      - --start-mode=normal 
+      - -c
+      - "cp -r /tmp/modules/* /opt/jboss/keycloak/modules/system/layers/base/ && /opt/jboss/keycloak/bin/standalone.sh --start-mode=normal"    
     volumes:
-      - ./alvearie/target/providers/jboss-fhir-provider-0.5.0-SNAPSHOT-jboss-modules.jar:/opt/jboss/keycloak/modules/system/layers/base/jboss-fhir-provider-0.5.0-SNAPSHOT-jboss-modules.jar
-      - ./alvearie/target/providers/jboss-fhir-provider-0.5.0-SNAPSHOT.jar:/opt/jboss/keycloak/standalone/deployments/jboss-fhir-provider-0.5.0-SNAPSHOT.jar
-      - ./alvearie/target/providers/keycloak-extensions-0.5.0-SNAPSHOT.jar:/opt/jboss/keycloak//standalone/deployments/keycloak-extensions-0.5.0-SNAPSHOT.jar
+      - ./alvearie/target/jboss-modules:/tmp/modules
+      - ./alvearie/target/jboss-fhir-provider-0.5.0-SNAPSHOT.jar:/opt/jboss/keycloak/standalone/deployments/jboss-fhir-provider-0.5.0-SNAPSHOT.jar
+      - ./alvearie/target/keycloak-extensions-0.5.0-SNAPSHOT.jar:/opt/jboss/keycloak/standalone/deployments/keycloak-extensions-0.5.0-SNAPSHOT.jar
       - ./config/realm.json:/opt/jboss/keycloak/data/import/realm.json
