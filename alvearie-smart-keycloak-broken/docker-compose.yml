@@ -7,7 +7,7 @@ services:
       context: https://github.com/Alvearie/keycloak-extensions-for-fhir.git#main
       dockerfile: Dockerfile
     ports: 
-      - "8088:8080"
+      - "8080:8080"
       - "8448:8443"
     command:
       - --start-mode=normal
