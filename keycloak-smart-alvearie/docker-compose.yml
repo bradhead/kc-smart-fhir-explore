@@ -12,6 +12,7 @@ services:
       - KC_HTTP_ENABLED=true
       - KC_HOSNTAME_STRICT=false
       - KC_IMPORT_REALM=/opt/jboss/keycloak/data/import/realm.json
+      - KC_HOSTNAME_ADMIN_URL="http://localhost/auth/admin"
     ports: 
       - "8080:8080"
     expose:
@@ -22,6 +23,6 @@ services:
       - "cp -r /tmp/modules/* /opt/jboss/keycloak/modules/system/layers/base/ && /opt/jboss/keycloak/bin/standalone.sh --start-mode=normal"    
     volumes:
       - ./alvearie/target/jboss-modules:/tmp/modules
-      - ./alvearie/target/jboss-fhir-provider-0.5.0-SNAPSHOT.jar:/opt/jboss/keycloak/standalone/deployments/jboss-fhir-provider-0.5.0-SNAPSHOT.jar
+      #- ./alvearie/target/jboss-fhir-provider-0.5.0-SNAPSHOT.jar:/opt/jboss/keycloak/standalone/deployments/jboss-fhir-provider-0.5.0-SNAPSHOT.jar
       - ./alvearie/target/keycloak-extensions-0.5.0-SNAPSHOT.jar:/opt/jboss/keycloak/standalone/deployments/keycloak-extensions-0.5.0-SNAPSHOT.jar
       - ./config/realm.json:/opt/jboss/keycloak/data/import/realm.json
