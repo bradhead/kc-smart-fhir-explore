@@ -1,0 +1,23 @@
+version: '3.8'
+services:
+  keycloak:
+    image: quay.io/keycloak/keycloak:18.0.2
+    container_name: keycloak
+    environment:
+      - KEYCLOAK_BASE_URL=http://localhost:8082
+      - KEYCLOAK_ADMIN=admin
+      - KEYCLOAK_ADMIN_PASSWORD=admin
+      - KC_HOSTNAME=localhost
+      - KC_HTTP_ENABLED=true
+      - KC_HOSNTAME_STRICT=false
+    ports: 
+      - "8081:8080"
+    expose:
+      - 8080
+    entrypoint: /bin/sh
+    command: 
+      - -c 
+      - "/opt/keycloak/bin/kc.sh build && /opt/keycloak/bin/kc.sh start-dev --import-realm"
+    volumes:
+      - ./openmrs-auth-provider/target/openmrs-keycloak-smart-auth-1.0.0-SNAPSHOT.jar:/opt/keycloak/providers/openmrs-keycloak-smart-auth-1.0.0-SNAPSHOT.jar
+      - ./config/realm.json:/opt/keycloak/data/import/realm.json

@@ -1,26 +1,26 @@
 services:
   swiss-app:
-    container_name: swiss-app
+    container_name: swiss-app-for-lra
     image: omarhoblos/swiss-on-fhir
     ports:
       - "4200:80"
     environment:
-      - "FHIRENDPOINT_URI=http://localhost:9900/hapi-fhir-jpaserver/fhir"
+      - "FHIRENDPOINT_URI=http://localhost:9900/"  # Smile CDR
       - "REDIRECT_URI=http://localhost:4200/index.html"
-      - "ISSUER_URI=http://localhost:8080/realms/phsa"
-      - "LOGOUT_URI='http://localhost:8080/realms/phsa/protocol/openid-connect/logout?cb=none&revoke=token&revoke=token_refresh&id_token_hint=none'"
+      - "ISSUER_URI=http://localhost:8080/realms/lra"
+      - "LOGOUT_URI='http://localhost:8080/realms/lra/protocol/openid-connect/logout?cb=none&revoke=token&revoke=token_refresh&id_token_hint=none'"
       - "CLIENT_ID=swiss-app"
       - "SCOPES=openid fhirUser launch/patient patient/*.read patient/*.write"
       - "ENABLE_HTTPS=false"
       - "SKIP_ISSUER_CHECK=false"
       - "STRICT_DISCOVERY_DOCUMENT_VALIDATION=true"
   swiss-app-test:
-    container_name: swiss-app-test
+    container_name: swiss-app-for-test
     image: omarhoblos/swiss-on-fhir
     ports:
       - "4201:80"
     environment:
-      - "FHIRENDPOINT_URI=http://localhost:8000"
+      - "FHIRENDPOINT_URI=http://localhost:8000"  # Smile CDR
       - "REDIRECT_URI=http://localhost:4201/index.html"
       - "ISSUER_URI=http://localhost:8080/realms/test"
       - "LOGOUT_URI='http://localhost:8080/realms/test/protocol/openid-connect/logout?cb=none&revoke=token&revoke=token_refresh&id_token_hint=none'"
