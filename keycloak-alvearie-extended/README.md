@@ -4,7 +4,7 @@ This is a Docker build that uses Keycloak 18.0.2 legacy edition and builds into 
 
 ## How to build
 
-```code
+```shell
 docker compose up
 ```
 
