@@ -1,6 +1,8 @@
 # Keycloak with Alvearie SMART on FHIR extensions
 
-This is a Docker build that uses Keycloak 18.0.2 legacy edition and builds into it the Alvearie project (IBM) SMART on FHIR exensions.
+This is a Docker build that uses Keycloak 18.0.2 legacy edition and builds into it the Alvearie project (IBM) SMART on FHIR exensions. See my fork which updates to 18.0.2-legacy.  
+
+<https://github.com/bradhead/keycloak-extensions-for-fhir#readme>
 
 ## How to build
 
