@@ -1,7 +1,7 @@
 resource "keycloak_oidc_identity_provider" "phsa_zed_azure_ad" {
   realm                 = data.keycloak_realm.smart_realm.id
   alias                 = var.keycloak_idp_zed_azure_ad.alias
-  display_name          = "Zed Azure Active Directory"
+  display_name          = "ZED WERKS AAD"
   enabled               = true
   store_token           = false
   trust_email           = true

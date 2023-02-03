@@ -12,7 +12,7 @@ resource "keycloak_openid_client" "smart-client" {
   full_scope_allowed           = false
 }
 
-resource "keycloak_openid_client_default_scopes" "client_default_scopes" {
+resource "keycloak_openid_client_default_scopes" "smart_default_scopes" {
   realm_id  = keycloak_openid_client.smart-client.realm_id
   client_id = keycloak_openid_client.smart-client.id
 
