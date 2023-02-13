@@ -15,10 +15,17 @@ resource "keycloak_openid_audience_protocol_mapper" "fhir_user_audience_mapper" 
   included_custom_audience = var.keycloak_environment.custom_audience
 }
 
+resource "keycloak_openid_client_scope" "launch_launch_scope" {
+  realm_id               = data.keycloak_realm.smart_realm.id
+  name                   = "launch"
+  description            = "EHR Launch scope"
+  include_in_token_scope = true
+}
+
 resource "keycloak_openid_client_scope" "launch_patient_context_scope" {
   realm_id               = data.keycloak_realm.smart_realm.id
   name                   = "launch/patient"
-  description            = "Used by clients to request a patient record scoped access token."
+  description            = "When launching outside the EHR, ask for a patient to be selected at launch time."
   include_in_token_scope = true
 }
 resource "keycloak_openid_audience_protocol_mapper" "launch_patient_context_audience_mapper" {
@@ -72,22 +79,6 @@ resource "keycloak_generic_protocol_mapper" "launch_patient_context_group_member
     "access.token.claim"   = "true",
     "userinfo.token.claim" = "true"
   }
-}
-
-resource "keycloak_openid_client_scope" "launch_user_context_scope" {
-  realm_id               = data.keycloak_realm.smart_realm.id
-  name                   = "launch/user"
-  description            = "Used by clients to request a user session scoped access token."
-  include_in_token_scope = true
-}
-
-resource "keycloak_openid_audience_protocol_mapper" "launch_user_context_audience_mapper" {
-  realm_id        = keycloak_openid_client_scope.launch_user_context_scope.realm_id
-  client_scope_id = keycloak_openid_client_scope.launch_user_context_scope.id
-  name            = "audience-mapper"
-  add_to_id_token = false
-
-  included_custom_audience = var.keycloak_environment.custom_audience
 }
 
 resource "keycloak_openid_client_scope" "online_access_scope" {

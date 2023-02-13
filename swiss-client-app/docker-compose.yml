@@ -8,9 +8,9 @@ services:
       - "FHIRENDPOINT_URI=http://localhost:9900/"  # Smile CDR
       - "REDIRECT_URI=http://localhost:4200/index.html"
       - "ISSUER_URI=http://localhost:8080/auth/realms/lra"
-      - "LOGOUT_URI='http://localhost:8080/auth/realms/lra/protocol/openid-connect/logout?cb=none&revoke=token&revoke=token_refresh&id_token_hint=none'"
+      - "LOGOUT_URI='http://localhost:8080/auth/realms/lra/protocol/openid-connect/logout?cb=none&revoke=token&revoke=token_refresh'"
       - "CLIENT_ID=swiss-app"
-      - "SCOPES=openid fhirUser launch/patient patient/*.read patient/*.write"
+      - "SCOPES=openid fhirUser launch patient/*.read offline_access"
       - "ENABLE_HTTPS=false"
       - "SKIP_ISSUER_CHECK=false"
       - "STRICT_DISCOVERY_DOCUMENT_VALIDATION=true"
@@ -25,7 +25,39 @@ services:
       - "ISSUER_URI=http://localhost:8080/auth/realms/test"
       - "LOGOUT_URI='http://localhost:8080/auth/realms/test/protocol/openid-connect/logout?cb=none&revoke=token&revoke=token_refresh&id_token_hint=none'"
       - "CLIENT_ID=swiss-app"
-      - "SCOPES=openid patient/*.read"
+      - "SCOPES=openid fhirUser launch patient/*.read offline_access"
       - "ENABLE_HTTPS=false"
+      - "SKIP_ISSUER_CHECK=false"
+      - "STRICT_DISCOVERY_DOCUMENT_VALIDATION=true"
+  swiss-app-dev:
+    container_name: swiss-app-for-dev
+    image: omarhoblos/swiss-on-fhir
+    ports:
+      - "4210:80"
+    environment:
+      - "FHIRENDPOINT_URI=https://lra-dev.bchealthcloud.ca/fhir"  # Smile CDR Dev cloud-Hosted 
+      - "REDIRECT_URI=http://localhost:4202/index.html"
+      - "ISSUER_URI=https://common-logon-dev.hlth.gov.bc.ca/auth/realms/lra"
+      - "LOGOUT_URI='https://common-logon-dev.hlth.gov.bc.ca/auth/realms/lra/protocol/openid-connect/logout?cb=none&revoke=token&revoke=token_refresh&id_token_hint=none'"
+      - "CLIENT_ID=swiss-app"
+      - "SCOPES=openid fhirUser launch patient/*.read offline_access"
+      - "ENABLE_HTTPS=true"
+      - "SKIP_ISSUER_CHECK=false"
+      - "STRICT_DISCOVERY_DOCUMENT_VALIDATION=true"
+
+  swiss-app-test-bradhead:
+    container_name: swiss-app-test-with-aud
+    build:
+      context: https://github.com/bradhead/swiss-on-fhir.git#main
+    ports:
+      - "4203:80"
+    environment:
+      - "FHIRENDPOINT_URI=https://lra-dev.bchealthcloud.ca/fhir"  # Smile CDR Dev cloud-Hosted 
+      - "REDIRECT_URI=http://localhost:4203/index.html"
+      - "ISSUER_URI=http://localhost:8080/auth/realms/test"
+      - "AUDIENCE=http://localhost:8000"
+      - "CLIENT_ID=swiss-app"
+      - "SCOPES=openid fhirUser launch patient/*.read offline_access"
+      - "ENABLE_HTTPS=true"
       - "SKIP_ISSUER_CHECK=false"
       - "STRICT_DISCOVERY_DOCUMENT_VALIDATION=true"
