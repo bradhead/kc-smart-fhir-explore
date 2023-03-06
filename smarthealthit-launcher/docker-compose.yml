@@ -6,8 +6,10 @@ services:
       context: https://github.com/smart-on-fhir/smart-launcher.git#master
       dockerfile: Dockerfile
     ports:
-      - "4200:80"
+      - "9009:80"
     environment:
-      - FHIR_SERVER_R4=https://r4.smarthealthit.org
+      - FHIR_SERVER_R2=https://lra-dev.bchealthcloud.ca/fhir
+      - FHIR_SERVER_R3=https://lra-dev.bchealthcloud.ca/fhir
+      - FHIR_SERVER_R4=https://lra-dev.bchealthcloud.ca/fhir
       - PICKER_CONFIG_R4=r4
       - NODE_ENV=development

@@ -1,0 +1,9 @@
+services:
+  swiss-app-localhost-lra:
+    container_name: growth-chart-smart-app
+    build:
+      context: https://github.com/bradhead/growth-chart-app.git#master   # This adds support for SMART required 'aud'
+      dockerfile: Dockerfile
+    ports:
+      - "9201:9000"
+  

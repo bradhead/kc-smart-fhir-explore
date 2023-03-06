@@ -15,7 +15,7 @@ resource "keycloak_openid_audience_protocol_mapper" "fhir_user_audience_mapper" 
   included_custom_audience = var.keycloak_environment.custom_audience
 }
 
-resource "keycloak_openid_client_scope" "launch_launch_scope" {
+resource "keycloak_openid_client_scope" "launch_context_scope" {
   realm_id               = data.keycloak_realm.smart_realm.id
   name                   = "launch"
   description            = "EHR Launch scope"

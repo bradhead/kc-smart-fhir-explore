@@ -6,10 +6,12 @@ resource "keycloak_openid_client" "smart-client" {
   enabled                      = true
   access_type                  = "PUBLIC"
   standard_flow_enabled        = true
-  direct_access_grants_enabled = true
+  implicit_flow_enabled        = false
+  direct_access_grants_enabled = false
   valid_redirect_uris          = var.client_smart_app.valid_redirects
   web_origins                  = var.client_smart_app.web_origins
   full_scope_allowed           = false
+  browser_id                   = var.keycloak_authentication_flow.smart_flow.alias
 }
 
 resource "keycloak_openid_client_default_scopes" "smart_default_scopes" {
@@ -31,8 +33,10 @@ resource "keycloak_openid_client_optional_scopes" "client_optional_scopes" {
     "offline_access",
     "phone",
     "microprofile-jwt",
+    "acr",
     keycloak_openid_client_scope.fhir_user_scope.name,
     keycloak_openid_client_scope.launch_patient_context_scope.name,
+    keycloak_openid_client_scope.launch_context_scope.name,
     keycloak_openid_client_scope.patient_all_write_scope.name,
     keycloak_openid_client_scope.patient_all_read_scope.name,
 
@@ -40,8 +44,8 @@ resource "keycloak_openid_client_optional_scopes" "client_optional_scopes" {
 }
 
 resource "keycloak_openid_user_attribute_protocol_mapper" "provider_identifier" {
-  realm_id  = keycloak_openid_client.smart-client.realm_id
-  client_id = keycloak_openid_client.smart-client.id
+  realm_id            = keycloak_openid_client.smart-client.realm_id
+  client_id           = keycloak_openid_client.smart-client.id
   name                = "provider_identifier"
   user_attribute      = "provider_identifier"
   claim_name          = "provider_identifier"
@@ -51,8 +55,8 @@ resource "keycloak_openid_user_attribute_protocol_mapper" "provider_identifier" 
   add_to_userinfo     = false
 }
 resource "keycloak_openid_user_attribute_protocol_mapper" "provider_status" {
-  realm_id  = keycloak_openid_client.smart-client.realm_id
-  client_id = keycloak_openid_client.smart-client.id
+  realm_id            = keycloak_openid_client.smart-client.realm_id
+  client_id           = keycloak_openid_client.smart-client.id
   name                = "provider_status"
   user_attribute      = "provider_status"
   claim_name          = "provider_status"
