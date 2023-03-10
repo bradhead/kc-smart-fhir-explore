@@ -1,7 +1,7 @@
 resource "keycloak_openid_client" "fhir-rs" {
   client_id                = "smile-cdr-rs"
   name                     = "Smile CDR FHIR Resource Server"
-  realm_id                 = data.keycloak_realm.smart_realm.id
+  realm_id                 = data.keycloak_realm.lra_realm.id
   description              = "A FHIR Resource Server confidential client."
   standard_flow_enabled    = true
   service_accounts_enabled = true

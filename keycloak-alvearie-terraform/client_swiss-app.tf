@@ -1,5 +1,5 @@
 resource "keycloak_openid_client" "smart-client" {
-  realm_id                     = data.keycloak_realm.smart_realm.id
+  realm_id                     = data.keycloak_realm.lra_realm.id
   client_id                    = var.client_smart_app.id
   name                         = "Swiss SMART on FHIR Demo App"
   description                  = "Example SMART on FHIR client"

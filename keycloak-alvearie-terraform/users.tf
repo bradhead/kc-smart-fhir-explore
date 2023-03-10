@@ -1,5 +1,5 @@
 resource "keycloak_user" "user" {
-  realm_id = data.keycloak_realm.smart_realm.id
+  realm_id = data.keycloak_realm.lra_realm.id
   username = "alice"
   enabled = true
   first_name = "Alice"
@@ -14,7 +14,7 @@ resource "keycloak_user" "user" {
 }
 
 resource "keycloak_group_memberships" "group_members" {
-  realm_id = data.keycloak_realm.smart_realm.id
+  realm_id = data.keycloak_realm.lra_realm.id
   group_id = keycloak_group.fhir_user_group.id
 
   members  = [

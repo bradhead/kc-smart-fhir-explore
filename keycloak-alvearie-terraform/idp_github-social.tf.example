@@ -1,5 +1,5 @@
 resource "keycloak_oidc_identity_provider" "github" {
-  realm                 = data.keycloak_realm.smart_realm.id
+  realm                 = data.keycloak_realm.lra_realm.id
   alias                 = "github"
   display_name          = "GitHub"
   enabled               = true

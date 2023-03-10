@@ -1,5 +1,5 @@
 resource "keycloak_oidc_identity_provider" "bcprovider_azure_ad" {
-  realm                 = data.keycloak_realm.smart_realm.id
+  realm                 = data.keycloak_realm.lra_realm.id
   alias                 = var.keycloak_idp_bcp_azure_ad.alias
   display_name          = "PHSA Azure Active Directory"
   enabled               = false
