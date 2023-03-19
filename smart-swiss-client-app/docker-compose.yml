@@ -6,48 +6,47 @@ services:
     ports:
       - "4200:80"
     environment:
+      - "CLIENT_ID=swiss-app"
       - "FHIRENDPOINT_URI=http://localhost:8000/"  # Smile CDR
       - "REDIRECT_URI=http://localhost:4200"
       - "ISSUER_URI=http://localhost:8080/auth/realms/lra"
       - "AUDIENCE=http://localhost:8000"
-      - "LOGOUT_URI='http://localhost:8080/auth/realms/lra/protocol/openid-connect/logout?cb=none&revoke=token&revoke=token_refresh'"
-      - "CLIENT_ID=swiss-app"
-      - "SCOPES=openid fhirUser launch/patient patient/*.read"
+      - "LOGOUT_URI=http://localhost:8080/auth/realms/lra/protocol/openid-connect/logout?cb=none&revoke=token&revoke=token_refresh"
+      - "SCOPES=openid fhirUser patient/*.read offline_access"
       - "ENABLE_HTTPS=false"
       - "SKIP_ISSUER_CHECK=false"
       - "STRICT_DISCOVERY_DOCUMENT_VALIDATION=true"
   swiss-app-lra-dev:
-    container_name: swiss-app-lra-phsa-dev
+    container_name: swiss-app-lra-dev
     build:
-      context: https://github.com/bradhead/swiss-on-fhir.git#base   # This adds support for SMART required 'aud'
+      context: https://github.com/bradhead/swiss-on-fhir.git#main   # This adds support for SMART required 'aud'
     ports:
       - "4201:80"
     environment:
+      - "CLIENT_ID=swiss-app"
       - "FHIRENDPOINT_URI=https://lra-dev.bchealthcloud.ca/fhir"  # Smile CDR Dev cloud-Hosted 
       - "REDIRECT_URI=http://localhost:4201"
       - "ISSUER_URI=https://common-logon-dev.hlth.gov.bc.ca/auth/realms/lra"
       - "AUDIENCE=https://lra-dev.bchealthcloud.ca/fhir"
-      - "LOGOUT_URI='https://common-logon-dev.hlth.gov.bc.ca/auth/realms/lra/protocol/openid-connect/logout?cb=none&revoke=token&revoke=token_refresh&id_token_hint=none'"
-      - "CLIENT_ID=swiss-app1"
-      - "PATIENT=9094333333"
-      - "SCOPES=openid fhirUser launch/patient patient/*.read offline_access"
-      - "ENABLE_HTTPS=true"
+      - "LOGOUT_URI=https://common-logon-dev.hlth.gov.bc.ca/auth/realms/lra/protocol/openid-connect/logout?cb=none&revoke=token&revoke=token_refresh&id_token_hint=none"
+      - "SCOPES=openid fhirUser patient/*.read offline_access"
+      - "ENABLE_HTTPS=false"
       - "SKIP_ISSUER_CHECK=false"
       - "STRICT_DISCOVERY_DOCUMENT_VALIDATION=true"
   swiss-app2-lra-dev:
-    container_name: swiss-app2-lra-phsa-dev
+    container_name: swiss-app2-lra-dev
     build:
-      context: https://github.com/bradhead/swiss-on-fhir.git#base   # This adds support for SMART required 'aud'
+      context: https://github.com/bradhead/swiss-on-fhir.git#main   # This adds support for SMART required 'aud'
     ports:
       - "4300:80"
     environment:
+      - "CLIENT_ID=swiss-app2"
       - "FHIRENDPOINT_URI=https://lra-dev.bchealthcloud.ca/fhir"  # Smile CDR Dev cloud-Hosted 
       - "REDIRECT_URI=http://localhost:4300"
       - "ISSUER_URI=https://common-logon-dev.hlth.gov.bc.ca/auth/realms/lra"
       - "AUDIENCE=https://lra-dev.bchealthcloud.ca/fhir"
-      - "LOGOUT_URI='https://common-logon-dev.hlth.gov.bc.ca/auth/realms/lra/protocol/openid-connect/logout?cb=none&revoke=token&revoke=token_refresh&id_token_hint=none'"
-      - "CLIENT_ID=swiss-app2"
-      - "SCOPES=openid fhirUser launch/patient patient/*.read offline_access"
-      - "ENABLE_HTTPS=true"
+      - "LOGOUT_URI=https://common-logon-dev.hlth.gov.bc.ca/auth/realms/lra/protocol/openid-connect/logout?cb=none&revoke=token&revoke=token_refresh&id_token_hint=none"
+      - "SCOPES=openid fhirUser patient/*.read offline_access"
+      - "ENABLE_HTTPS=false"
       - "SKIP_ISSUER_CHECK=false"
       - "STRICT_DISCOVERY_DOCUMENT_VALIDATION=true"

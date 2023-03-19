@@ -6,59 +6,6 @@ resource "keycloak_openid_client_scope" "fhir_user_scope" {
   include_in_token_scope = true
 }
 
-resource "keycloak_openid_client_scope" "launch_patient_context_scope" {
-  realm_id               = data.keycloak_realm.lra_realm.id
-  name                   = "launch/patient"
-  description            = "When launching outside the EHR, ask for a patient to be selected at launch time."
-  include_in_token_scope = true
-}
-
-resource "keycloak_generic_protocol_mapper" "launch_patient_context_id_claim_protocol_mapper" {
-  realm_id        = keycloak_openid_client_scope.launch_patient_context_scope.realm_id
-  client_scope_id = keycloak_openid_client_scope.launch_patient_context_scope.id
-  name            = "Patient ID Claim Mapper"
-  protocol        = "openid-connect"
-  protocol_mapper = "oidc-usermodel-attribute-mapper"
-  config = {
-    "user.attribute"       = "patient_id",
-    "claim.name"           = "patient",
-    "jsonType.label"       = "String",
-    "id.token.claim"       = "false",
-    "access.token.claim"   = "true",
-    "userinfo.token.claim" = "false"
-  }
-}
-resource "keycloak_generic_protocol_mapper" "launch_patient_context_id_token_protocol_mapper" {
-  realm_id        = keycloak_openid_client_scope.launch_patient_context_scope.realm_id
-  client_scope_id = keycloak_openid_client_scope.launch_patient_context_scope.id
-  name            = "Patient ID Token Mapper"
-  protocol        = "openid-connect"
-  protocol_mapper = "oidc-usersessionmodel-note-mapper"
-  config = {
-    "user.session.note"          = "patient_id",
-    "claim.name"                 = "patient",
-    "jsonType.label"             = "String",
-    "id.token.claim"             = "false",
-    "access.token.claim"         = "false",
-    "access.tokenResponse.claim" = "true"
-  }
-}
-
-resource "keycloak_generic_protocol_mapper" "launch_patient_context_group_membership_protocol_mapper" {
-  realm_id        = keycloak_openid_client_scope.launch_patient_context_scope.realm_id
-  client_scope_id = keycloak_openid_client_scope.launch_patient_context_scope.id
-  name            = "Group Membership Mapper"
-  protocol        = "openid-connect"
-  protocol_mapper = "oidc-group-membership-mapper"
-  config = {
-    "claim.name"           = "group",
-    "full.path"            = "false",
-    "id.token.claim"       = "true",
-    "access.token.claim"   = "true",
-    "userinfo.token.claim" = "true"
-  }
-}
-
 resource "keycloak_openid_client_scope" "online_access_scope" {
   realm_id               = data.keycloak_realm.lra_realm.id
   name                   = "online_access"

@@ -33,8 +33,6 @@ resource "keycloak_openid_client_optional_scopes" "client_optional_scopes2" {
     "phone",
     "microprofile-jwt",
     "acr",
-    keycloak_openid_client_scope.launch_patient_context_scope.name,
-    keycloak_openid_client_scope.patient_all_write_scope.name,
     keycloak_openid_client_scope.patient_all_read_scope.name,
   ]
 }
