@@ -35,6 +35,16 @@ variable "client_app2" {
   description = "SMART on FHIR client configuration"
 }
 
+variable "smile-client" {
+  type = object({
+    id              = optional(string, "smile-cdr")
+    valid_redirects = list(string)
+    web_origins     = list(string)
+  })
+  description = "SMILE CDR client configuration"
+}
+
+
 variable "keycloak_idp_zed_azure_ad" {
   type = object({
     alias         = string

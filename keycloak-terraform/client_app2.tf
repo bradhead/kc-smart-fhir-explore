@@ -29,7 +29,6 @@ resource "keycloak_openid_client_optional_scopes" "client_optional_scopes2" {
   optional_scopes = [
     "address",
     "email",
-    "offline_access",
     "phone",
     "microprofile-jwt",
     "acr",
