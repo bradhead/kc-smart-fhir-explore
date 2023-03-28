@@ -35,3 +35,65 @@ resource "keycloak_openid_client_optional_scopes" "smile_optional_scopes" {
   ]
 }
 
+
+resource "keycloak_openid_user_attribute_protocol_mapper" "smile_provider_identifier" {
+  realm_id            = keycloak_openid_client.smile.realm_id
+  client_id           = keycloak_openid_client.smile.id
+  name                = "practitionerId"
+  user_attribute      = "practitionerId"
+  claim_name          = "practitionerId"
+  claim_value_type    = "String"
+  add_to_id_token     = true
+  add_to_access_token = true
+  add_to_userinfo     = true
+}
+resource "keycloak_openid_user_attribute_protocol_mapper" "smile_provider_status" {
+  realm_id            = keycloak_openid_client.smile.realm_id
+  client_id           = keycloak_openid_client.smile.id
+  name                = "practitionerStatus"
+  user_attribute      = "practitionerStatus"
+  claim_name          = "practitionerStatus"
+  claim_value_type    = "String"
+  add_to_id_token     = true
+  add_to_access_token = true
+  add_to_userinfo     = true
+}
+
+resource "keycloak_openid_user_attribute_protocol_mapper" "smile_provider_role" {
+  realm_id            = keycloak_openid_client.smile.realm_id
+  client_id           = keycloak_openid_client.smile.id
+  name                = "practitionerRole"
+  user_attribute      = "practitionerRole"
+  claim_name          = "practitionerRole"
+  claim_value_type    = "String"
+  add_to_id_token     = true
+  add_to_access_token = true
+  add_to_userinfo     = true
+}
+
+resource "keycloak_openid_user_attribute_protocol_mapper" "smile_provider_license" {
+  realm_id            = keycloak_openid_client.smile.realm_id
+  client_id           = keycloak_openid_client.smile.id
+  name                = "practitionerLicense"
+  user_attribute      = "practitionerLicense"
+  claim_name          = "practitionerLicense"
+  claim_value_type    = "String"
+  add_to_id_token     = true
+  add_to_access_token = true
+  add_to_userinfo     = true
+}
+
+resource "keycloak_openid_user_attribute_protocol_mapper" "smile_provider_specialty" {
+  realm_id            = keycloak_openid_client.smile.realm_id
+  client_id           = keycloak_openid_client.smile.id
+  name                = "practitionerSpecialty"
+  user_attribute      = "practitionerSpecialty"
+  claim_name          = "practitionerSpecialty"
+  claim_value_type    = "String"
+  add_to_id_token     = true
+  add_to_access_token = true
+  add_to_userinfo     = true
+}
+
+
+
