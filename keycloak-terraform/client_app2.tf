@@ -1,7 +1,7 @@
 resource "keycloak_openid_client" "client2" {
-  realm_id                     = data.keycloak_realm.lra_realm.id
+  realm_id                     = data.keycloak_realm.realm.id
   client_id                    = var.client_app2.id
-  name                         = "Swiss App2 Demo App"
+  name                         = "Swiss App2 Demo"
   description                  = "Example API client"
   enabled                      = true
   access_type                  = "PUBLIC"
@@ -13,20 +13,20 @@ resource "keycloak_openid_client" "client2" {
   full_scope_allowed           = false
 }
 
-resource "keycloak_openid_client_default_scopes" "default_scopes2" {
+resource "keycloak_openid_client_default_scopes" "client2_default_scopes" {
   realm_id  = keycloak_openid_client.client2.realm_id
   client_id = keycloak_openid_client.client2.id
 
   default_scopes = [
-    "profile",
-    "web-origins"
-  ]
+    "web-origins"  ]
 }
-resource "keycloak_openid_client_optional_scopes" "client_optional_scopes2" {
+resource "keycloak_openid_client_optional_scopes" "client2_optional_scopes" {
   realm_id  = keycloak_openid_client.client2.realm_id
   client_id = keycloak_openid_client.client2.id
 
   optional_scopes = [
+    "offline_access",
+    "profile",
     "address",
     "email",
     "phone",
@@ -37,62 +37,16 @@ resource "keycloak_openid_client_optional_scopes" "client_optional_scopes2" {
 }
 
 
-resource "keycloak_openid_user_attribute_protocol_mapper" "client2_provider_identifier" {
-  realm_id            = keycloak_openid_client.client2.realm_id
-  client_id           = keycloak_openid_client.client2.id
-  name                = "practitionerId"
-  user_attribute      = "practitionerId"
-  claim_name          = "practitionerId"
-  claim_value_type    = "String"
-  add_to_id_token     = true
-  add_to_access_token = true
-  add_to_userinfo     = true
-}
-resource "keycloak_openid_user_attribute_protocol_mapper" "client2_provider_status" {
-  realm_id            = keycloak_openid_client.client2.realm_id
-  client_id           = keycloak_openid_client.client2.id
-  name                = "practitionerStatus"
-  user_attribute      = "practitionerStatus"
-  claim_name          = "practitionerStatus"
-  claim_value_type    = "String"
-  add_to_id_token     = true
-  add_to_access_token = true
-  add_to_userinfo     = true
-}
-
 resource "keycloak_openid_user_attribute_protocol_mapper" "client2_provider_role" {
   realm_id            = keycloak_openid_client.client2.realm_id
   client_id           = keycloak_openid_client.client2.id
-  name                = "practitionerRole"
-  user_attribute      = "practitionerRole"
-  claim_name          = "practitionerRole"
+  name                = "expertise"
+  user_attribute      = "expertise"
+  claim_name          = "expertise"
   claim_value_type    = "String"
   add_to_id_token     = true
   add_to_access_token = true
   add_to_userinfo     = true
 }
 
-resource "keycloak_openid_user_attribute_protocol_mapper" "client2_provider_license" {
-  realm_id            = keycloak_openid_client.client2.realm_id
-  client_id           = keycloak_openid_client.client2.id
-  name                = "practitionerLicense"
-  user_attribute      = "practitionerLicense"
-  claim_name          = "practitionerLicense"
-  claim_value_type    = "String"
-  add_to_id_token     = true
-  add_to_access_token = true
-  add_to_userinfo     = true
-}
-
-resource "keycloak_openid_user_attribute_protocol_mapper" "client2_provider_specialty" {
-  realm_id            = keycloak_openid_client.client2.realm_id
-  client_id           = keycloak_openid_client.client2.id
-  name                = "practitionerSpecialty"
-  user_attribute      = "practitionerSpecialty"
-  claim_name          = "practitionerSpecialty"
-  claim_value_type    = "String"
-  add_to_id_token     = true
-  add_to_access_token = true
-  add_to_userinfo     = true
-}
 

@@ -1,5 +1,5 @@
 resource "keycloak_openid_client_scope" "fhir_user_scope" {
-  realm_id               = data.keycloak_realm.lra_realm.id
+  realm_id               = data.keycloak_realm.realm.id
   name                   = "fhirUser"
   description            = "Permission to retrieve current logged-in user"
   consent_screen_text    = "Permission to retrieve current logged-in user"
@@ -7,7 +7,7 @@ resource "keycloak_openid_client_scope" "fhir_user_scope" {
 }
 
 resource "keycloak_openid_client_scope" "online_access_scope" {
-  realm_id               = data.keycloak_realm.lra_realm.id
+  realm_id               = data.keycloak_realm.realm.id
   name                   = "online_access"
   description            = "Request a refresh_token that can be used to obtain a new access token to replace an expired one, and that will be usable for as long as the end-user remains online"
   consent_screen_text    = "Retain access while you are online"

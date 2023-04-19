@@ -1,12 +1,12 @@
 resource "keycloak_authentication_flow" "smart_flow" {
-  realm_id    = data.keycloak_realm.lra_realm.id
+  realm_id    = data.keycloak_realm.realm.id
   alias       = "SMART App Launch"
   description = "SMART App Launch Browser-Based Authentication"
   provider_id = "basic-flow"
 }
 
 resource "keycloak_authentication_subflow" "forms_flow" {
-  realm_id          = data.keycloak_realm.lra_realm.id
+  realm_id          = data.keycloak_realm.realm.id
   alias             = "Forms"
   parent_flow_alias = keycloak_authentication_flow.smart_flow.alias
   provider_id       = "basic-flow"

@@ -1,6 +1,6 @@
 variable "keycloak_environment" {
   type = object({
-    realm = optional(string, "smart")
+    realm = optional(string, "lra")
     realm_display_name = optional(string, "Smart on FHIR Realm")
     custom_audience = optional(string, "fhir-rs")
     base_url = optional(string, "http://localhost:8080")
@@ -42,6 +42,23 @@ variable "smile-client" {
     web_origins     = list(string)
   })
   description = "SMILE CDR client configuration"
+}
+
+
+variable "keycloak_idp_bcsc" {
+  type = object({
+    alias         = string
+    base_url      = string
+    auth_path     = optional(string, "/login/oidc/authorize/")
+    token_path    = optional(string, "/oauth2/token")
+    userinfo_path = optional(string, "/oauth2/userinfo")
+    client_id     = string
+    client_secret = string
+    issuer_path   = optional(string, "/oauth2")
+    jwks_path     = optional(string, "/oauth2/jwk")
+  })
+  sensitive   = true
+  description = "Configuration settings for the Azure AD Identity Provider"
 }
 
 

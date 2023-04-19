@@ -1,5 +1,5 @@
 resource "keycloak_openid_client" "smile" {
-  realm_id                     = data.keycloak_realm.lra_realm.id
+  realm_id                     = data.keycloak_realm.realm.id
   client_id                    = var.smile-client.id
   name                         = "Smile CDR Authorization/Resource Server"
   description                  = "Smile Authorization/Resource Server"
