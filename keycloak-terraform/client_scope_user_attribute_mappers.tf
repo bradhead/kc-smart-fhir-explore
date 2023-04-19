@@ -29,7 +29,7 @@ resource "keycloak_openid_user_attribute_protocol_mapper" "attribute_mapper2" {
 resource "keycloak_openid_user_attribute_protocol_mapper" "attribute_mapper3" {
   realm_id             = data.keycloak_realm.realm.id
   client_scope_id      = data.keycloak_openid_client_scope.openid_profile_scope.id
-  name                 = "user--role-mapper"
+  name                 = "user-role-mapper"
   user_attribute       = "org_role"
   claim_name           = "org_role"
   claim_value_type     = "JSON"
@@ -43,7 +43,7 @@ resource "keycloak_openid_user_attribute_protocol_mapper" "attribute_mapper3" {
 resource "keycloak_openid_user_attribute_protocol_mapper" "attribute_mapper4" {
   realm_id             = data.keycloak_realm.realm.id
   client_scope_id      = data.keycloak_openid_client_scope.openid_profile_scope.id
-  name                 = "expertise"
+  name                 = "user-expertise-mapper"
   user_attribute       = "expertise"
   claim_name           = "expertise"
   claim_value_type     = "String"
