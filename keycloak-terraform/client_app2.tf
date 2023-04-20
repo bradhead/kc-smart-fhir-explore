@@ -11,6 +11,9 @@ resource "keycloak_openid_client" "client2" {
   valid_redirect_uris          = var.client_app2.valid_redirects
   web_origins                  = var.client_app2.web_origins
   full_scope_allowed           = false
+  authentication_flow_binding_overrides {
+    browser_id = keycloak_authentication_flow.patient_login_flow.id
+  }
 }
 
 resource "keycloak_openid_client_default_scopes" "client2_default_scopes" {
@@ -18,7 +21,7 @@ resource "keycloak_openid_client_default_scopes" "client2_default_scopes" {
   client_id = keycloak_openid_client.client2.id
 
   default_scopes = [
-    "web-origins"  ]
+  "web-origins"]
 }
 resource "keycloak_openid_client_optional_scopes" "client2_optional_scopes" {
   realm_id  = keycloak_openid_client.client2.realm_id
@@ -33,7 +36,9 @@ resource "keycloak_openid_client_optional_scopes" "client2_optional_scopes" {
     "microprofile-jwt",
     "acr",
     keycloak_openid_client_scope.fhir_user_scope.name,
-    keycloak_openid_client_scope.patient_all_read_scope.name,  ]
+  keycloak_openid_client_scope.patient_all_read_scope.name, ]
+
+
 }
 
 
