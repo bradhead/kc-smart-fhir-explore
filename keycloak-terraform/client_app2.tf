@@ -1,7 +1,7 @@
 resource "keycloak_openid_client" "client2" {
   realm_id                     = data.keycloak_realm.realm.id
   client_id                    = var.client_app2.id
-  name                         = "Swiss App2 Demo"
+  name                         = "Swiss App Patient Portal Demo"
   description                  = "Example API client"
   enabled                      = true
   access_type                  = "PUBLIC"

@@ -23,7 +23,7 @@ services:
     ports:
       - "4201:80"
     environment:
-      - "CLIENT_ID=swiss-app"
+      - "CLIENT_ID=swiss-app1"
       - "FHIRENDPOINT_URI=https://lra-dev.bchealthcloud.ca/fhir"  # Smile CDR Dev cloud-Hosted 
       - "REDIRECT_URI=http://localhost:4201"
       - "ISSUER_URI=https://common-logon-dev.hlth.gov.bc.ca/auth/realms/lra"

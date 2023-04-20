@@ -13,7 +13,7 @@ resource "keycloak_authentication_execution" "patient_idp_redirector_execution" 
 resource "keycloak_authentication_execution_config" "patient_idp_redirector_execution_config" {
   realm_id     = data.keycloak_realm.realm.id
   execution_id = keycloak_authentication_execution.patient_idp_redirector_execution.id
-  alias        = "pcare-idp-redirector-config"
+  alias        = "bcsc-idp-redirector-config"
   config = {
     defaultProvider = "bcsc"
   }

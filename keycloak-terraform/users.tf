@@ -5,6 +5,9 @@ resource "keycloak_user" "user1" {
   first_name = "Alice"
   last_name = "Fehr"
  attributes = {
+    practitionerId = "1234",
+    practitionerRole = "md",
+    practitionerStatus = "active",
     expertise = "101##136##171",
     fhirUser= "https://fhir.server/Practitioner/1234494959",
     qualification = "[{ \"class\":\"MD\", \"license_id\":\"12345\", \"status\":\"active\", \"start_date\":\"20230101\", \"msp_id\":\"2292993\"} , { \"class\":\"PHARM\", \"license_id\":\"34567\", \"status\":\"active\", \"start_date\":\"20221101\", \"msp_id\":\"333995\"}  ]",
@@ -22,7 +25,9 @@ resource "keycloak_user" "user2" {
   first_name = "Bob"
   last_name = "Fehr"
   attributes = {
-    provider_id = "[{\"type\":\"PRN\", \"system\":\"urn:plr\", \"value\":\"8662F6B6-C212-4075-B1BB-B94441DE64C7\"}, {}]"
+    practitionerId = "1234",
+    practitionerRole = "moa",
+    practitionerStatus = "active",
     expertise = "S31##515##168",
     fhirUser= "https://fhir.server/Practitioner/012345689",
     qualification = "[{ \"code\":\"RN\", \"id\":\"3939393\", \"status\":\"active\", \"period_start\":\"20230204\", \"msp_id\":\"90999339\"} ]",
