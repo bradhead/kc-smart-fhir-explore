@@ -6,7 +6,7 @@ resource "keycloak_user" "user1" {
   last_name = "Fehr"
  attributes = {
     practitionerId = "1234",
-    practitionerRole = "md",
+    practitionerRole = "doctor",
     practitionerStatus = "active",
     expertise = "101##136##171",
     fhirUser= "https://fhir.server/Practitioner/1234494959",

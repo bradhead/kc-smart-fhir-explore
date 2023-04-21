@@ -1,7 +1,7 @@
 resource "keycloak_openid_client" "smile" {
   realm_id                     = data.keycloak_realm.realm.id
   client_id                    = var.smile-client.id
-  name                         = "Smile CDR Authorization/Resource Server"
+  name                         = "Smile CDR"
   description                  = "Smile Authorization/Resource Server"
   enabled                      = true
   standard_flow_enabled        = true
@@ -9,6 +9,7 @@ resource "keycloak_openid_client" "smile" {
   implicit_flow_enabled        = false
   direct_access_grants_enabled = true
   access_type                  = "CONFIDENTIAL"
+  login_theme                  = "moh-idp"
   valid_redirect_uris          = var.smile-client.valid_redirects
 }
 

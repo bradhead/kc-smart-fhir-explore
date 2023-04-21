@@ -2,7 +2,7 @@ resource "keycloak_oidc_identity_provider" "zed_azure_ad" {
   realm                 = data.keycloak_realm.realm.id
   alias                 = var.keycloak_idp_zed_azure_ad.alias
   display_name          = "ZedWerks Azure AD"
-  enabled               = true
+  enabled               = false
   store_token           = false
   trust_email           = true
   hide_on_login_page    = false
@@ -17,6 +17,7 @@ resource "keycloak_oidc_identity_provider" "zed_azure_ad" {
   validate_signature    = true
   jwks_url              = var.keycloak_idp_zed_azure_ad.jwks_url
   logout_url            = var.keycloak_idp_zed_azure_ad.logout_url
+  issuer                = var.keycloak_idp_zed_azure_ad.issuer_url
   extra_config = {
     "clientAuthMethod" = "client_secret_post"
     "prompt"           = "login"

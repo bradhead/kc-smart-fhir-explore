@@ -74,6 +74,7 @@ variable "keycloak_idp_zed_azure_ad" {
     issuer_url    = string
     jwks_url      = string
     logout_url    = string
+    issuer_url    = string
   })
   sensitive   = true
   description = "Configuration settings for the Azure AD Identity Provider"
