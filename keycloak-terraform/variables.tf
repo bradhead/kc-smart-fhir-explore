@@ -23,6 +23,8 @@ variable "client_app1" {
     valid_redirects = list(string)
     web_origins     = list(string)
     base_url        = string
+    login_theme     = optional(string, "keycloak")
+
   })
   description = "SMART on FHIR client configuration"
 }
@@ -32,6 +34,7 @@ variable "client_app2" {
     id              = optional(string, "swiss-app2")
     valid_redirects = list(string)
     web_origins     = list(string)
+    login_theme     = optional(string, "keycloak")
   })
   description = "SMART on FHIR client configuration"
 }
@@ -41,6 +44,8 @@ variable "smile-client" {
     id              = optional(string, "smile-cdr")
     valid_redirects = list(string)
     web_origins     = list(string)
+    login_theme     = optional(string, "keycloak")
+
   })
   description = "SMILE CDR client configuration"
 }
