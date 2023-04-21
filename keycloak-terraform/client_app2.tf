@@ -1,7 +1,7 @@
 resource "keycloak_openid_client" "client2" {
   realm_id                     = data.keycloak_realm.realm.id
   client_id                    = var.client_app2.id
-  name                         = "Swiss App Patient Portal Demo"
+  name                         = "Swiss App Patient Portal"
   description                  = "Example API client"
   enabled                      = true
   access_type                  = "PUBLIC"
@@ -42,12 +42,12 @@ resource "keycloak_openid_client_optional_scopes" "client2_optional_scopes" {
 }
 
 
-resource "keycloak_openid_user_attribute_protocol_mapper" "client2_provider_role" {
+resource "keycloak_openid_user_attribute_protocol_mapper" "client2_patient_id" {
   realm_id            = keycloak_openid_client.client2.realm_id
   client_id           = keycloak_openid_client.client2.id
-  name                = "expertise"
-  user_attribute      = "expertise"
-  claim_name          = "expertise"
+  name                = "hdid"
+  user_attribute      = "hdid"
+  claim_name          = "patient_hdid"
   claim_value_type    = "String"
   add_to_id_token     = true
   add_to_access_token = true

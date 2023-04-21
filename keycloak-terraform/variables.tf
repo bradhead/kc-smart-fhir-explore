@@ -1,9 +1,9 @@
 variable "keycloak_environment" {
   type = object({
-    realm = optional(string, "lra")
+    realm              = optional(string, "lra")
     realm_display_name = optional(string, "Smart on FHIR Realm")
-    custom_audience = optional(string, "fhir-rs")
-    base_url = optional(string, "http://localhost:8080")
+    custom_audience    = optional(string, "fhir-rs")
+    base_url           = optional(string, "http://localhost:8080")
   })
   description = "Keycloak configuration environment"
 }
@@ -19,9 +19,10 @@ variable "keycloak_terraform_client" {
 
 variable "client_app1" {
   type = object({
-    id              = optional(string, "swiss-app1")
+    id              = optional(string, "swiss-app")
     valid_redirects = list(string)
     web_origins     = list(string)
+    base_url        = string
   })
   description = "SMART on FHIR client configuration"
 }
@@ -64,15 +65,15 @@ variable "keycloak_idp_bcsc" {
 
 variable "keycloak_idp_zed_azure_ad" {
   type = object({
-    alias         = string
-    base_url      = string
-    auth_path     = optional(string, "/oauth2/v2.0/authorize/")
-    token_path    = optional(string, "/oauth2/v2.0/token")
-    userinfo_path = optional(string, "/oauth2/userinfo")
+    alias         = optional(string, "zedwerks-aad-idp")
+    auth_url      = string
+    token_url     = string
+    userinfo_url  = string
     client_id     = string
     client_secret = string
-    issuer_path   = optional(string, "/v2.0")
-    jwks_path     = optional(string, "/discovery/v2.0/keys/")
+    issuer_url    = string
+    jwks_url      = string
+    logout_url    = string
   })
   sensitive   = true
   description = "Configuration settings for the Azure AD Identity Provider"

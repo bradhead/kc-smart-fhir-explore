@@ -1,3 +1,28 @@
+resource "keycloak_authentication_flow" "first_bcsc_login_flow" {
+  realm_id = data.keycloak_realm.realm.id
+  alias    = "First BCSC Login"
+}
+
+resource "keycloak_authentication_execution" "execution1" {
+  realm_id          = data.keycloak_realm.realm.id
+  parent_flow_alias = keycloak_authentication_flow.first_bcsc_login_flow.alias
+  authenticator     = "idp-create-user-if-unique"
+  requirement       = "ALTERNATIVE"
+
+}
+
+resource "keycloak_authentication_execution" "execution2" {
+  realm_id          = data.keycloak_realm.realm.id
+  parent_flow_alias = keycloak_authentication_flow.first_bcsc_login_flow.alias
+  authenticator     = "idp-auto-link"
+  requirement       = "ALTERNATIVE"
+
+  depends_on = [
+    keycloak_authentication_execution.execution1
+  ]
+}
+
+
 resource "keycloak_authentication_flow" "patient_login_flow" {
   realm_id = data.keycloak_realm.realm.id
   alias    = "BCSC Patient Login"

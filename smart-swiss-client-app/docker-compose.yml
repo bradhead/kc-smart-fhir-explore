@@ -12,7 +12,7 @@ services:
       - "ISSUER_URI=http://localhost:8080/auth/realms/lra"
       - "AUDIENCE=http://localhost:8000"
       - "LOGOUT_URI=http://localhost:8080/auth/realms/lra/protocol/openid-connect/logout?cb=none&revoke=token&revoke=token_refresh"
-      - "SCOPES=openid patient/*.read"
+      - "SCOPES=openid fhirUser profile patient/*.read"
       - "ENABLE_HTTPS=false"
       - "SKIP_ISSUER_CHECK=false"
       - "STRICT_DISCOVERY_DOCUMENT_VALIDATION=true"
@@ -23,13 +23,13 @@ services:
     ports:
       - "4201:80"
     environment:
-      - "CLIENT_ID=swiss-app1"
+      - "CLIENT_ID=swiss-app"
       - "FHIRENDPOINT_URI=https://lra-dev.bchealthcloud.ca/fhir"  # Smile CDR Dev cloud-Hosted 
       - "REDIRECT_URI=http://localhost:4201"
       - "ISSUER_URI=https://common-logon-dev.hlth.gov.bc.ca/auth/realms/lra"
       - "AUDIENCE=https://lra-dev.bchealthcloud.ca/fhir"
       - "LOGOUT_URI=https://common-logon-dev.hlth.gov.bc.ca/auth/realms/lra/protocol/openid-connect/logout?cb=none&revoke=token&revoke=token_refresh&id_token_hint=none"
-      - "SCOPES=openid patient/*.read"
+      - "SCOPES=openid fhirUser profile patient/*.read"
       - "ENABLE_HTTPS=false"
       - "SKIP_ISSUER_CHECK=false"
       - "STRICT_DISCOVERY_DOCUMENT_VALIDATION=true"
@@ -46,12 +46,12 @@ services:
       - "ISSUER_URI=https://common-logon-dev.hlth.gov.bc.ca/auth/realms/lra"
       - "AUDIENCE=https://lra-dev.bchealthcloud.ca/fhir"
       - "LOGOUT_URI=https://common-logon-dev.hlth.gov.bc.ca/auth/realms/lra/protocol/openid-connect/logout?cb=none&revoke=token&revoke=token_refresh&id_token_hint=none"
-      - "SCOPES=openid patient/*.read"
+      - "SCOPES=openid profile patient/*.read"
       - "ENABLE_HTTPS=false"
       - "SKIP_ISSUER_CHECK=false"
       - "STRICT_DISCOVERY_DOCUMENT_VALIDATION=true"
-  swiss-app-lra-smartauth:
-    container_name: swiss-app-smartauth
+  swiss-app-lra-smilecdr:
+    container_name: swiss-app-smilecdr
     build:
       context: https://github.com/omarhoblos/swiss-on-fhir.git#main   # This adds support for SMART required 'aud'
     ports:
@@ -63,7 +63,7 @@ services:
       - "ISSUER_URI=https://lra-dev.bchealthcloud.ca/smartauth"
       - "AUDIENCE=https://lra-dev.bchealthcloud.ca/fhir"
       - "LOGOUT_URI="
-      - "SCOPES=openid profile patient/*.read"
+      - "SCOPES=openid fhirUser profile patient/*.read"
       - "ENABLE_HTTPS=false"
       - "SKIP_ISSUER_CHECK=false"
       - "STRICT_DISCOVERY_DOCUMENT_VALIDATION=true"
