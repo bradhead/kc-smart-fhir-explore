@@ -2,7 +2,7 @@ resource "keycloak_oidc_identity_provider" "zed_azure_ad" {
   realm                 = data.keycloak_realm.realm.id
   alias                 = var.keycloak_idp_zed_azure_ad.alias
   display_name          = "ZedWerks Azure AD"
-  enabled               = false
+  enabled               = true
   store_token           = false
   trust_email           = true
   hide_on_login_page    = false
