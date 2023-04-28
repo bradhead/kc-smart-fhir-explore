@@ -70,7 +70,7 @@ variable "keycloak_idp_bcsc" {
 
 variable "keycloak_idp_zed_azure_ad" {
   type = object({
-    alias         = optional(string, "zedwerks-aad-idp")
+    alias         = optional(string, "zedwerks-idp")
     auth_url      = string
     token_url     = string
     userinfo_url  = string
@@ -86,22 +86,6 @@ variable "keycloak_idp_zed_azure_ad" {
 }
 
 variable "keycloak_idp_phsa_azure_ad" {
-  type = object({
-    alias         = string
-    base_url      = string
-    auth_path     = optional(string, "/oauth2/v2.0/authorize/")
-    token_path    = optional(string, "/oauth2/v2.0/token")
-    userinfo_path = optional(string, "/oauth2/userinfo")
-    client_id     = string
-    client_secret = string
-    issuer_path   = optional(string, "/v2.0")
-    jwks_path     = optional(string, "/discovery/v2.0/keys/")
-  })
-  sensitive   = true
-  description = "Configuration settings for the Azure AD Identity Provider"
-}
-
-variable "keycloak_idp_bcp_azure_ad" {
   type = object({
     alias         = string
     base_url      = string
