@@ -1,0 +1,17 @@
+version: '3.8'
+services:
+  keycloak:
+    container_name: keycloak-18.0.2
+    image: quay.io/keycloak/keycloak:18.0.2-legacy
+
+    ports: 
+      - "8080:8080"
+      - "8787:8787"
+    command:
+      - --start-mode=normal
+    environment:
+      - "KEYCLOAK_USER=admin"
+      - "KEYCLOAK_PASSWORD=admin"
+      - "KEYCLOAK_IMPORT=/tmp/import/lra-realm.json"
+    volumes:
+      - ./realm/:/tmp/import/

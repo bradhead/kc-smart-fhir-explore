@@ -9,7 +9,7 @@ resource "keycloak_openid_client" "smile" {
   implicit_flow_enabled        = false
   direct_access_grants_enabled = true
   access_type                  = "CONFIDENTIAL"
-  login_theme                  = "moh-idp"
+  login_theme                  = var.smile-client.login_theme
   valid_redirect_uris          = var.smile-client.valid_redirects
 }
 

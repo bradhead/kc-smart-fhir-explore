@@ -8,6 +8,7 @@ resource "keycloak_openid_client" "client2" {
   standard_flow_enabled        = true
   implicit_flow_enabled        = false
   direct_access_grants_enabled = false
+  login_theme                  = var.client_app1.login_theme
   valid_redirect_uris          = var.client_app2.valid_redirects
   web_origins                  = var.client_app2.web_origins
   full_scope_allowed           = false
@@ -31,7 +32,6 @@ resource "keycloak_openid_client_optional_scopes" "client2_optional_scopes" {
     "offline_access",
     "profile",
     "address",
-    "email",
     "phone",
     "microprofile-jwt",
     "acr",
