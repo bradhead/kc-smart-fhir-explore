@@ -22,6 +22,62 @@ resource "keycloak_authentication_execution" "execution2" {
   ]
 }
 
+resource "keycloak_authentication_flow" "provider_login_flow" {
+  realm_id = data.keycloak_realm.realm.id
+  alias    = "Provider Login"
+}
+
+
+resource "keycloak_authentication_execution" "bcprovider_ad_idp_redirector_execution" {
+  realm_id          = data.keycloak_realm.realm.id
+  parent_flow_alias = keycloak_authentication_flow.provider_login_flow.alias
+  authenticator     = "identity-provider-redirector"
+  requirement       = "ALTERNATIVE"
+}
+
+resource "keycloak_authentication_execution_config" "bcprovider_idp_redirector_execution_config" {
+  realm_id     = data.keycloak_realm.realm.id
+  execution_id = keycloak_authentication_execution.bcprovider_ad_idp_redirector_execution.id
+  alias        = "bcprovider-idp-redirector-config"
+  config = {
+    defaultProvider = "zedwerks-idp"
+  }
+}
+
+resource "keycloak_authentication_execution" "bcsc_provider_idp_redirector_execution" {
+  realm_id          = data.keycloak_realm.realm.id
+  parent_flow_alias = keycloak_authentication_flow.provider_login_flow.alias
+  authenticator     = "identity-provider-redirector"
+  requirement       = "ALTERNATIVE"
+}
+
+resource "keycloak_authentication_execution_config" "bcsc_provider_idp_redirector_execution_config" {
+  realm_id     = data.keycloak_realm.realm.id
+  execution_id = keycloak_authentication_execution.bcsc_provider_idp_redirector_execution.id
+  alias        = "bcsc-idp-redirector-config"
+  config = {
+    defaultProvider = "bcsc"
+  }
+}
+
+resource "keycloak_authentication_execution" "provider_execution1" {
+  realm_id          = data.keycloak_realm.realm.id
+  parent_flow_alias = keycloak_authentication_flow.provider_login_flow.alias
+  authenticator     = "idp-create-user-if-unique"
+  requirement       = "ALTERNATIVE"
+}
+
+resource "keycloak_authentication_execution" "provider_execution2" {
+  realm_id          = data.keycloak_realm.realm.id
+  parent_flow_alias = keycloak_authentication_flow.provider_login_flow.alias
+  authenticator     = "idp-auto-link"
+  requirement       = "ALTERNATIVE"
+
+  depends_on = [
+    keycloak_authentication_execution.provider_execution1
+  ]
+}
+
 
 resource "keycloak_authentication_flow" "patient_login_flow" {
   realm_id = data.keycloak_realm.realm.id
