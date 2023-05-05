@@ -12,6 +12,7 @@ resource "keycloak_openid_client" "client2" {
   valid_redirect_uris          = var.client_app2.valid_redirects
   web_origins                  = var.client_app2.web_origins
   full_scope_allowed           = false
+  base_url                     = var.client_app2.base_url
   authentication_flow_binding_overrides {
     browser_id = keycloak_authentication_flow.patient_login_flow.id
   }

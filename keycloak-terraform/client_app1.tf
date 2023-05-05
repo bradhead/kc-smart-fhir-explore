@@ -13,6 +13,9 @@ resource "keycloak_openid_client" "client1" {
   web_origins                  = var.client_app1.web_origins
   base_url                     = var.client_app1.base_url
   full_scope_allowed           = false
+  //authentication_flow_binding_overrides {
+  //  browser_id = keycloak_authentication_flow.provider_login_flow.id
+  //}
 }
 
 resource "keycloak_openid_client_default_scopes" "client1_default_scopes" {

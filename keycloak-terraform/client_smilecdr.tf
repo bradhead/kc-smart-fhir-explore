@@ -29,7 +29,6 @@ resource "keycloak_openid_client_optional_scopes" "smile_optional_scopes" {
 
   optional_scopes = [
     "address",
-    "email",
     "phone",
     "microprofile-jwt",
     "acr"

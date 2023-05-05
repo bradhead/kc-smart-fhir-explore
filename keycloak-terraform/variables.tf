@@ -26,7 +26,7 @@ variable "client_app1" {
     login_theme     = optional(string, "keycloak")
 
   })
-  description = "SMART on FHIR client configuration"
+  description = "Provider App configuration"
 }
 
 variable "client_app2" {
@@ -34,9 +34,11 @@ variable "client_app2" {
     id              = optional(string, "swiss-app2")
     valid_redirects = list(string)
     web_origins     = list(string)
+    base_url        = string
     login_theme     = optional(string, "keycloak")
+
   })
-  description = "SMART on FHIR client configuration"
+  description = "Patient App configuration"
 }
 
 variable "smile-client" {
