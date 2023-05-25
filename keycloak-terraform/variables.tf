@@ -41,12 +41,17 @@ variable "client_app2" {
   description = "Patient App configuration"
 }
 
-variable "client_licence_roles" {
+variable "smile-client" {
   type = object({
-    id              = optional(string, "LICENCE-STATUS")
+    id              = optional(string, "smile-cdr")
+    valid_redirects = list(string)
+    web_origins     = list(string)
+    login_theme     = optional(string, "keycloak")
 
   })
+  description = "SMILE CDR client configuration"
 }
+
 
 variable "keycloak_idp_bcsc" {
   type = object({

@@ -170,7 +170,7 @@ resource "keycloak_openid_audience_protocol_mapper" "user_binary_read_audience_m
   realm_id        = keycloak_openid_client_scope.user_binary_read.realm_id
   client_scope_id = keycloak_openid_client_scope.user_binary_read.id
   name            = "audience-mapper"
-  add_to_id_token = falseå
+  add_to_id_token = false
 
   included_custom_audience = var.keycloak_environment.custom_audience
 }
@@ -221,7 +221,7 @@ resource "keycloak_openid_audience_protocol_mapper" "system_binary_read_audience
   realm_id        = keycloak_openid_client_scope.system_binary_read.realm_id
   client_scope_id = keycloak_openid_client_scope.system_binary_read.id
   name            = "audience-mapper"
-  add_to_id_token = falseå
+  add_to_id_token = false
 
   included_custom_audience = var.keycloak_environment.custom_audience
 }
@@ -273,7 +273,7 @@ resource "keycloak_openid_audience_protocol_mapper" "patient_binary_read_audienc
   realm_id        = keycloak_openid_client_scope.patient_binary_read.realm_id
   client_scope_id = keycloak_openid_client_scope.patient_binary_read.id
   name            = "audience-mapper"
-  add_to_id_token = falseå
+  add_to_id_token = false
 
   included_custom_audience = var.keycloak_environment.custom_audience
 }
@@ -297,7 +297,7 @@ resource "keycloak_openid_audience_protocol_mapper" "patient_binary_write_audien
 
 resource "keycloak_openid_client_scope" "patient_binary_full" {
   realm_id               = data.keycloak_realm.realm.id
-  name                   = "user/Binary.*"
+  name                   = "patient/Binary.*"
   description            = "Read and Write access to Binary"
   consent_screen_text    = "Permission to read and write Binary"
   include_in_token_scope = true
@@ -372,7 +372,7 @@ resource "keycloak_openid_audience_protocol_mapper" "patient_composition_read_au
   realm_id        = keycloak_openid_client_scope.patient_composition_read.realm_id
   client_scope_id = keycloak_openid_client_scope.patient_composition_read.id
   name            = "audience-mapper"
-  add_to_id_token = falseå
+  add_to_id_token = false
 
   included_custom_audience = var.keycloak_environment.custom_audience
 }
@@ -423,7 +423,7 @@ resource "keycloak_openid_audience_protocol_mapper" "system_composition_read_aud
   realm_id        = keycloak_openid_client_scope.system_composition_read.realm_id
   client_scope_id = keycloak_openid_client_scope.system_composition_read.id
   name            = "audience-mapper"
-  add_to_id_token = falseå
+  add_to_id_token = false
 
   included_custom_audience = var.keycloak_environment.custom_audience
 }
@@ -474,7 +474,7 @@ resource "keycloak_openid_audience_protocol_mapper" "user_composition_read_audie
   realm_id        = keycloak_openid_client_scope.user_composition_read.realm_id
   client_scope_id = keycloak_openid_client_scope.user_composition_read.id
   name            = "audience-mapper"
-  add_to_id_token = falseå
+  add_to_id_token = false
 
   included_custom_audience = var.keycloak_environment.custom_audience
 }
