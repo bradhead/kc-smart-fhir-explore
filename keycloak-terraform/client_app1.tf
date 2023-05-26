@@ -41,3 +41,51 @@ resource "keycloak_openid_client_optional_scopes" "client1_optional_scopes" {
     keycloak_openid_client_scope.patient_all_read_scope.name,
   ]
 }
+
+resource "keycloak_generic_role_mapper" "client_status_role_md_mapper" {
+  realm_id  = keycloak_openid_client.client1.realm_id
+  client_id = keycloak_openid_client.client1.id
+  role_id   = keycloak_role.client_role_md.id
+}
+
+resource "keycloak_generic_role_mapper" "client_status_role_rnp_mapper" {
+  realm_id  = keycloak_openid_client.client1.realm_id
+  client_id = keycloak_openid_client.client1.id
+  role_id   = keycloak_role.client_role_rnp.id
+}
+
+resource "keycloak_generic_role_mapper" "client_status_role_moa_mapper" {
+  realm_id  = keycloak_openid_client.client1.realm_id
+  client_id = keycloak_openid_client.client1.id
+  role_id   = keycloak_role.client_role_moa.id
+}
+
+resource "keycloak_generic_role_mapper" "client_status_role_practitioner_mapper" {
+  realm_id  = keycloak_openid_client.client1.realm_id
+  client_id = keycloak_openid_client.client1.id
+  role_id   = keycloak_role.client_role_practitioner.id
+}
+
+resource "keycloak_openid_user_attribute_protocol_mapper" "client1_endorser_attribute_mapper" {
+  realm_id            = keycloak_openid_client.client1.realm_id
+  client_id           = keycloak_openid_client.client1.id
+  name                = "endorser_data"
+  user_attribute      = "endorser_data"
+  claim_name          = "endorser_data"
+  claim_value_type    = "String"
+  multivalued         = true
+  add_to_id_token     = true
+  add_to_access_token = true
+  add_to_userinfo     = true
+}
+
+
+resource "keycloak_openid_user_client_role_protocol_mapper" "user_client_role_mapper" {
+  realm_id                    = keycloak_openid_client.client1.realm_id
+  client_id                   = keycloak_openid_client.client1.id
+  name                        = "User LICENCE-Status Role"
+  claim_name                  = "provider_role"
+  client_id_for_role_mappings = "LICENCE-STATUS"
+  client_role_prefix          = ""
+  multivalued                 = true
+}

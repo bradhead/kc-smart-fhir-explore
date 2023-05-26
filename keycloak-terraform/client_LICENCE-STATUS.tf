@@ -1,6 +1,6 @@
 resource "keycloak_openid_client" "licence_status_client" {
   realm_id                     = data.keycloak_realm.realm.id
-  client_id                    = "LICENCE=STATUS"
+  client_id                    = "LICENCE-STATUS"
   name                         = "MOH LICENCE-STATUS"
   description                  = "This is for defining Provider Roles meant to be realm-wide available. How quaint"
   enabled                      = true
@@ -30,4 +30,12 @@ resource "keycloak_role" "client_role_rnp" {
   client_id   = keycloak_openid_client.licence_status_client.id
   name        = "RNP"
   description = "Registered Nurse Practitioner role"
+}
+
+
+resource "keycloak_role" "client_role_practitioner" {
+  realm_id    = data.keycloak_realm.realm.id
+  client_id   = keycloak_openid_client.licence_status_client.id
+  name        = "PRACTITIONER"
+  description = "Practitioner role"
 }
