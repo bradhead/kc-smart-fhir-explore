@@ -102,5 +102,8 @@ variable "keycloak_idp_phsa_azure_ad" {
   sensitive   = true
   description = "Configuration settings for the Azure AD Identity Provider"
 }
+variable "test_user_password" {
+  type = string
+}
 
 

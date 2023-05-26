@@ -13,7 +13,7 @@ resource "keycloak_user" "user1" {
     qualification      = "[{ \"class\":\"MD\", \"license_id\":\"12345\", \"status\":\"active\", \"start_date\":\"20230101\", \"msp_id\":\"2292993\"} , { \"class\":\"PHARM\", \"license_id\":\"34567\", \"status\":\"active\", \"start_date\":\"20221101\", \"msp_id\":\"333995\"}  ]",
   }
   initial_password {
-    value     = "password"
+    value     = var.test_user_password
     temporary = false
   }
 }
@@ -43,7 +43,7 @@ resource "keycloak_user" "user2" {
     endorser_data      = "CPN.00063660.BC.PRS##CPN.00099999.BC.PRS"
   }
   initial_password {
-    value     = "password"
+    value     = var.test_user_password
     temporary = false
   }
 }
@@ -65,7 +65,7 @@ resource "keycloak_user" "test_user1" {
   first_name = "Test1"
   last_name  = "MD"
   initial_password {
-    value     = "password"
+    value     = var.test_user_password
     temporary = false
   }
 
@@ -89,7 +89,7 @@ resource "keycloak_user" "test_user2" {
     endorser_data = "CPN.00063660.BC.PRS##CPN.00099999.BC.PRS"
   }
   initial_password {
-    value     = "password"
+    value     = var.test_user_password
     temporary = false
   }
 }
@@ -110,7 +110,7 @@ resource "keycloak_user" "test_user3" {
   first_name = "Test3"
   last_name  = "RNP"
   initial_password {
-    value     = "password"
+    value     = var.test_user_password
     temporary = false
   }
 }
@@ -131,7 +131,7 @@ resource "keycloak_user" "test_user4" {
   first_name = "Test4"
   last_name  = "PRACTITIONER-MD"
   initial_password {
-    value     = "password"
+    value     = var.test_user_password
     temporary = false
   }
 }
@@ -153,7 +153,7 @@ resource "keycloak_user" "test_user5" {
   first_name = "Test5"
   last_name  = "PRACTITIONER"
   initial_password {
-    value     = "password"
+    value     = var.test_user_password
     temporary = false
   }
 }
@@ -188,7 +188,7 @@ resource "keycloak_user" "test_user7" {
     endorser_data = ""
   }
   initial_password {
-    value     = "password"
+    value     = var.test_user_password
     temporary = false
   }
 }
@@ -212,7 +212,10 @@ resource "keycloak_group_memberships" "group_members" {
     keycloak_user.test_user1.username,
     keycloak_user.test_user2.username,
     keycloak_user.test_user3.username,
-    keycloak_user.test_user4.username
+    keycloak_user.test_user4.username,
+    keycloak_user.test_user5.username,
+    keycloak_user.test_user6.username,
+    keycloak_user.test_user7.username
   ]
 }
 
