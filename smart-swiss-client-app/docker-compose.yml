@@ -67,3 +67,20 @@ services:
       - "ENABLE_HTTPS=false"
       - "SKIP_ISSUER_CHECK=false"
       - "STRICT_DISCOVERY_DOCUMENT_VALIDATION=true"
+  swiss-app-lra-smilecdr-test-client:
+    container_name: swiss-app-smilecdr-test-client
+    build:
+      context: https://github.com/omarhoblos/swiss-on-fhir.git#main   # This adds support for SMART required 'aud'
+    ports:
+      - "5000:80"
+    environment:
+      - "CLIENT_ID=test-client"
+      - "FHIRENDPOINT_URI=https://lra-dev.bchealthcloud.ca/fhir"  # Smile CDR Dev cloud-Hosted 
+      - "REDIRECT_URI=http://localhost:5000"
+      - "ISSUER_URI=https://lra-dev.bchealthcloud.ca/smartauth"
+      - "AUDIENCE=https://lra-dev.bchealthcloud.ca/fhir"
+      - "LOGOUT_URI="
+      - "SCOPES=openid fhirUser profile patient/*.read"
+      - "ENABLE_HTTPS=false"
+      - "SKIP_ISSUER_CHECK=false"
+      - "STRICT_DISCOVERY_DOCUMENT_VALIDATION=true"
