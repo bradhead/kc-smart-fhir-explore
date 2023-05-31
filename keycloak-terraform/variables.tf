@@ -43,13 +43,13 @@ variable "client_app2" {
 
 variable "smile-client" {
   type = object({
-    id              = optional(string, "smile-cdr")
+    id              = optional(string, "lra-rs")
     valid_redirects = list(string)
     web_origins     = list(string)
     login_theme     = optional(string, "keycloak")
 
   })
-  description = "SMILE CDR client configuration"
+  description = "LRA SMILE CDR client configuration"
 }
 
 
