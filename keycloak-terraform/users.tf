@@ -173,7 +173,7 @@ resource "keycloak_user" "test_user6" {
   first_name = "Test6"
   last_name  = "NOT-A-PRACTITIONER"
   initial_password {
-    value     = "password"
+    value     = var.test_user_password
     temporary = false
   }
 }
